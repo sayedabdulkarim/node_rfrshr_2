@@ -1,0 +1,74 @@
+- what is nodeJs 
+    - Node.js is a runtime environment that lets you run JavaScript outside the browser — mainly on the server.
+        - https://www.youtube.com/watch?v=y0aTs56DJWk
+        - https://www.youtube.com/watch?v=QOfROjXytok
+
+- eventLoop
+        - https://www.youtube.com/watch?v=y0aTs56DJWk
+        - https://www.youtube.com/watch?v=QOfROjXytok
+
+- middleware
+    - it is a function that runs before the final route handler 
+        - https://www.youtube.com/watch?v=zM9R6aioOuQ&t=604s
+        - https://www.youtube.com/watch?v=n2c0mf1sza4
+
+- streams
+    - https://www.youtube.com/watch?v=m118HulDXOk
+
+- worker threads
+
+- monolithic and microservice architecture
+
+- bodyParser
+
+- fileSystem module
+
+- webSocket
+
+- callBackHell
+
+- require and Import difference 
+
+- how to connect mongo in our node
+
+- authentication and authorization
+
+- suppose , i want to uplload 1 or 2gb file in the server, then how we can handle ?
+
+- how do u manage multiple role , in a single table (like admin, superadmin, customersupport, merchants)
+
+- how do we optimise the performance in nodejs ( to get the response faster )
+
+- process.nexttick and setImmediate and setTimeout
+
+- payment gateway integration
+
+- while making the payment , the internet is cut down . ( means how server know the internet is cut down )
+
+- search, pagination, filter, sort in one single api 
+
+- write a basic code, how to create server in nodeJS
+
+- mvc, mvvm ( different architecture )
+
+-  google login ( web and mobile ) ( single api which use for web/ mobile )
+
+- how do you create chat APp ( socket.io )
+
+- how to secure nodeJs application
+
+- pushNotification 
+
+- how do u manage multiple role , in a single schema (like admin, superadmin, customersupport, merchants)
+
+- emails in nodejs
+
+- multi image function in nodeJs
+
+- how to upload 2-3 gb movie 
+
+- how to encrypt your password
+
+- how to implement forgotPassword functionality flow 
+
+- how to optimise search query 
