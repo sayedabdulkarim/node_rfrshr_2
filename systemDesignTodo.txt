@@ -1,0 +1,321 @@
+=====================================
+SYSTEM DESIGN LEARNING ROADMAP
+=====================================
+
+PROJECT: Real-Time Chat Application with Distributed Architecture
+Tech Stack: MERN + Redis + Nginx + RabbitMQ/Kafka (optional)
+
+=====================================
+PHASE 1: FUNDAMENTALS (Week 1)
+=====================================
+
+Concepts to Learn:
+-----------------
+ What is System Design
+ Monolithic vs Microservices Architecture
+ Client-Server Architecture
+ Horizontal vs Vertical Scaling
+ Latency & Throughput
+ Availability & Reliability
+ Consistency
+ CAP Theorem
+
+Playlist Videos: 1-9
+
+Project Step:
+------------
+� Create basic MERN chat app (single server)
+  - User login/registration
+  - Send/receive messages (real-time with Socket.io)
+  - MongoDB for data storage
+  - Basic Express API
+
+Files to Create:
+- client/ (React frontend)
+- server/ (Express backend)
+- models/ (MongoDB schemas)
+
+=====================================
+PHASE 2: SCALING & LOAD BALANCING (Week 2)
+=====================================
+
+Concepts to Learn:
+-----------------
+ Load Balancing (Round Robin, Least Connections)
+ Redundancy & Replication
+ Reverse Proxy vs Forward Proxy
+ Sticky Sessions
+ Health Checks
+
+Playlist Videos: 10-12, 31-32
+
+Project Step:
+------------
+� Add Nginx Load Balancer
+  - Run 3 Node.js instances (ports: 3001, 3002, 3003)
+  - Configure Nginx to distribute traffic
+  - Test load distribution
+  - Handle WebSocket sticky sessions
+
+Files to Create:
+- nginx.conf (Load balancer configuration)
+- ecosystem.config.js (PM2 config for multiple instances)
+
+=====================================
+PHASE 3: CACHING (Week 2-3)
+=====================================
+
+Concepts to Learn:
+-----------------
+ What is Caching
+ Cache Eviction Strategies (LRU, LFU, MRU, FIFO)
+ Write-Through vs Write-Back Cache
+ Cache Invalidation
+ Distributed Caching
+
+Playlist Videos: 13-14
+
+Project Step:
+------------
+� Add Redis for caching & session management
+  - Store user sessions in Redis
+  - Cache frequently accessed messages
+  - Implement cache expiration
+  - Share sessions across multiple servers
+
+Files to Create:
+- redis.config.js
+- middleware/sessionManager.js
+
+=====================================
+PHASE 4: DATABASE SCALING (Week 3)
+=====================================
+
+Concepts to Learn:
+-----------------
+ File-based Storage vs RDBMS
+ RDBMS Horizontal Scaling Challenges
+ NoSQL Databases (Types & Use Cases)
+ Database Indexing
+ Denormalization vs Normalization
+ Database Replication
+ Database Sharding (concept)
+ Polyglot Persistence
+
+Playlist Videos: 15-20
+
+Project Step:
+------------
+� Optimize MongoDB
+  - Create indexes on frequently queried fields
+  - Setup MongoDB replica set (locally)
+  - Implement data sharding strategy (document)
+  - Optimize queries
+
+Files to Create:
+- db/indexing.js
+- db/replication-setup.md
+
+=====================================
+PHASE 5: COMMUNICATION PATTERNS (Week 4)
+=====================================
+
+Concepts to Learn:
+-----------------
+ Synchronous vs Asynchronous Communication
+ Message-Based Communication
+ Message Queues
+ Pub/Sub Pattern
+ WebSockets vs HTTP
+ Long Polling vs Server-Sent Events
+
+Playlist Videos: 21-23
+
+Project Step:
+------------
+� Add Message Queue (RabbitMQ or Redis Pub/Sub)
+  - Handle message delivery across servers
+  - Implement cross-server real-time updates
+  - Queue system for message persistence
+  - Handle offline message delivery
+
+Files to Create:
+- services/messageQueue.js
+- services/pubsub.js
+
+=====================================
+PHASE 6: WEB FUNDAMENTALS (Week 4)
+=====================================
+
+Concepts to Learn:
+-----------------
+ Web Server Architecture
+ Communication Protocols (HTTP, WebSocket, TCP/UDP)
+ REST API Design
+ SOA vs Microservices
+ API Gateway Pattern
+
+Playlist Videos: 24-26
+
+Project Step:
+------------
+� Refactor to Microservices (optional)
+  - Split into: Auth Service, Chat Service, User Service
+  - Create API Gateway
+  - Service-to-service communication
+
+Files to Create:
+- services/auth-service/
+- services/chat-service/
+- services/user-service/
+- api-gateway/
+
+=====================================
+PHASE 7: SECURITY & AUTHENTICATION (Week 5)
+=====================================
+
+Concepts to Learn:
+-----------------
+ Authentication vs Authorization
+ Basic Authentication
+ Token-Based Authentication (JWT)
+ OAuth 2.0
+ Session Management
+ Security Best Practices
+
+Playlist Videos: 27-30
+
+Project Step:
+------------
+� Implement robust authentication
+  - JWT token-based auth
+  - Refresh token mechanism
+  - OAuth integration (Google/GitHub)
+  - Rate limiting
+  - Input validation & sanitization
+
+Files to Create:
+- middleware/auth.js
+- middleware/rateLimiter.js
+- services/oauth.js
+
+=====================================
+PHASE 8: SYSTEM DESIGN EXAMPLES (Week 5-6)
+=====================================
+
+Concepts to Learn:
+-----------------
+ URL Shortener System Design
+ Dropbox/Google Drive System Design
+ Design Patterns & Trade-offs
+
+Playlist Videos: 33-34
+
+Project Step:
+------------
+� Document your chat app architecture
+  - Create system design diagram
+  - Document trade-offs made
+  - Write scaling strategy
+  - Performance benchmarking
+
+Files to Create:
+- docs/system-architecture.md
+- docs/scaling-strategy.md
+- docs/performance-report.md
+
+=====================================
+FINAL PROJECT ARCHITECTURE
+=====================================
+
+Components:
+----------
+1. Frontend: React (Port 3000)
+2. Backend: Node.js x3 instances (Ports 3001, 3002, 3003)
+3. Load Balancer: Nginx (Port 80)
+4. Cache: Redis (Port 6379)
+5. Database: MongoDB (Port 27017)
+6. Message Queue: Redis Pub/Sub or RabbitMQ
+7. (Optional) Microservices: Auth, Chat, User services
+
+Flow:
+-----
+User � Nginx (Load Balancer) � Node Instance (1/2/3) �
+  �                                    �
+Redis (Cache/Session)            MongoDB (Persistent Storage)
+  �
+Redis Pub/Sub (Cross-server messaging)
+
+=====================================
+KEY SYSTEM DESIGN CONCEPTS COVERED
+=====================================
+
+ Scalability (Horizontal & Vertical)
+ High Availability
+ Load Balancing
+ Caching Strategies
+ Database Optimization
+ Replication & Redundancy
+ Distributed Systems
+ Microservices Architecture
+ Message Queues
+ Session Management
+ Authentication & Authorization
+ API Design
+ Real-time Communication
+ Proxy Servers
+ CAP Theorem (practical application)
+
+=====================================
+DOCKER SETUP (BONUS)
+=====================================
+
+Services in docker-compose.yml:
+- app-server-1, app-server-2, app-server-3
+- nginx
+- mongodb
+- redis
+- rabbitmq (optional)
+
+This simulates a distributed production environment!
+
+=====================================
+RESOURCES
+=====================================
+
+Playlist: Engineering Digest - System Design in Hindi (24/34 videos)
+Link: https://www.youtube.com/watch?v=1_8a8-__6ts&list=PLA3GkZPtsafZdyC5iucNM_uhqGJ5yFNUM
+
+GitHub: (your project repo)
+Deployment: AWS Free Tier / Google Cloud (optional)
+
+=====================================
+TIMELINE
+=====================================
+
+Week 1: Fundamentals + Basic App
+Week 2: Load Balancing + Caching
+Week 3: Database Scaling + Communication
+Week 4: Microservices + Web Fundamentals
+Week 5: Security + System Design Examples
+Week 6: Documentation + Portfolio Polish
+
+Total: 6 weeks to master System Design practically!
+
+=====================================
+NOTES
+=====================================
+
+- Har concept ko pehle video se seekho
+- Fir project mein implement karo
+- Working code > Perfect code for learning
+- Document your learnings
+- Test with real scenarios (100+ concurrent users)
+- Keep it simple initially, then add complexity
+
+=====================================
+END
+=====================================
+
+Cost: �0 (Everything is FREE!)
+Hardware: Your laptop is enough!
