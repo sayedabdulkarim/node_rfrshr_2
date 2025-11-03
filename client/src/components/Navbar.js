@@ -25,6 +25,9 @@ const Navbar = () => {
               <Link to="/dashboard" style={styles.link}>
                 Dashboard
               </Link>
+              <Link to="/profile" style={styles.profileIcon} title="Profile">
+                👤
+              </Link>
               <button onClick={handleLogout} style={styles.logoutBtn}>
                 Logout
               </button>
@@ -79,6 +82,20 @@ const styles = {
   },
   username: {
     color: '#ddd'
+  },
+  profileIcon: {
+    color: 'white',
+    textDecoration: 'none',
+    fontSize: '1.8rem',
+    padding: '0.5rem',
+    borderRadius: '50%',
+    backgroundColor: '#555',
+    width: '40px',
+    height: '40px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'background-color 0.3s'
   },
   logoutBtn: {
     backgroundColor: '#dc3545',

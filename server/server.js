@@ -8,6 +8,8 @@ const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
 const todoRoutes = require('./routes/todoRoutes');
 const testPasswordRoute = require('./routes/testPasswordRoute');
+const fileRoutes = require('./routes/fileRoutes');
+const profileRoutes = require('./routes/profileRoutes');
 
 const app = express();
 
@@ -76,6 +78,12 @@ app.use('/api/todos', todoRoutes);
 
 // Test routes for learning
 app.use('/api/test', testPasswordRoute);
+
+// File handling routes (Buffer vs Stream demo)
+app.use('/api/files', fileRoutes);
+
+// Profile routes (Profile picture upload - Buffer vs Stream)
+app.use('/api/profile', profileRoutes);
 
 // ============ ERROR HANDLING MIDDLEWARE ============
 
