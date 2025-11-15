@@ -1,0 +1,15 @@
+- how can we optimise express js performance
+
+- implemet pagination with mongo db in nodejs ( with or without aggregation )
+
+- difference between js and nodejs
+    Key Differences:
+
+  | Feature    | JavaScript               | Node.js             |
+  |------------|--------------------------|---------------------|
+  | Type       | Language                 | Runtime Environment |
+  | Runs on    | Browser                  | Server/Computer     |
+  | Can access | DOM, Window              | File System, OS     |
+  | Used for   | Frontend                 | Backend             |
+  | Example    | document.querySelector() | fs.readFile()       |
+
