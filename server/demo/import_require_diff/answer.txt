@@ -1,0 +1,2 @@
+ok, so require me synch wise line load hota means jab line me require mila tab wo load hua, and in the case of import , initially
+it load all the import , then it will start line by line.
