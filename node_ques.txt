@@ -64,3 +64,28 @@
 - which package u used for sending mail from nodeJs ?
 
 - how we are connecting our nodejs into database ?
+
+- how to handle Environment variables in nodeJs ?
+
+- which package used for password bcrypt ?
+
+- what should be the foldeer structure of our nodeJS project? 
+
+- what is eJS ?
+
+- difference between queryParams and request.params ?
+
+- how to integrate google authentication?
+
+- what is webSocket ?
+
+- how to manage session in nodeJS?
+
+- how to create database Modal ? 
+
+- why we use mongoose , not mongoDb ?
+    Ans :-  like prisma is ORM ( Object-Relational Mapper ) for SQL, monggose is ODM ( Object-Document Mapper ) for mongoDB right ?
+
+- what is cluster in nodeJs ?
+
+- How to implement search functionality in NodeJS and mongoDB ?
