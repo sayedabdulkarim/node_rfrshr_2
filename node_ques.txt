@@ -1,91 +1,91 @@
-- how can we optimise express js performance
+1. How can we optimise express js performance?
 
-- implemet pagination with mongo db in nodejs ( with or without aggregation )
+2. Implement pagination with mongo db in nodejs ( with or without aggregation )
 
-- difference between js and nodejs
-    Key Differences:
+3. Difference between js and nodejs
+   Key Differences:
 
-  | Feature    | JavaScript               | Node.js             |
-  |------------|--------------------------|---------------------|
-  | Type       | Language                 | Runtime Environment |
-  | Runs on    | Browser                  | Server/Computer     |
-  | Can access | DOM, Window              | File System, OS     |
-  | Used for   | Frontend                 | Backend             |
-  | Example    | document.querySelector() | fs.readFile()       |
+   | Feature    | JavaScript               | Node.js             |
+   |------------|--------------------------|---------------------|
+   | Type       | Language                 | Runtime Environment |
+   | Runs on    | Browser                  | Server/Computer     |
+   | Can access | DOM, Window              | File System, OS     |
+   | Used for   | Frontend                 | Backend             |
+   | Example    | document.querySelector() | fs.readFile()       |
 
-- nodejs is singleThreaded ?
+4. Is nodejs single threaded?
 
-- what is module in nodejs
+5. What is module in nodejs?
 
-- How do you create a nodejs application
+6. How do you create a nodejs application?
 
-- middleware in nodeJS
+7. What is middleware in nodeJS?
 
-- how does nodeJs handle concurrency , even it is single threaded
+8. How does nodeJs handle concurrency, even though it is single threaded?
 
-- what is control flow in nodeJS
+9. What is control flow in nodeJS?
 
-- eventLoop in nodeJS
+10. What is eventLoop in nodeJS?
 
-- disadvantages if nodeJS
+11. What are the disadvantages of nodeJS?
 
-- can we use both sql and nodeJs
+12. Can we use both SQL and nodeJs?
 
-- what is repel Environment in nodeJS
+13. What is REPL environment in nodeJS?
 
-- example of inbuilt module in nodeJS
+14. Give examples of inbuilt modules in nodeJS
 
-- package.json in nodeJS
+15. What is package.json in nodeJS?
 
-- how to write helloWorld in server ( with / without express )
+16. How to write helloWorld in server ( with / without express )?
 
-- why we use ExpressJs ?
+17. Why we use ExpressJs?
 
-- promises in nodeJs ?
+18. What are promises in nodeJs?
 
-- eventDriven programming in NodeJS
+19. What is event-driven programming in NodeJS?
 
-- buffer in nodeJS
+20. What is buffer in nodeJS?
 
-- streams in nodeJs
+21. What are streams in nodeJs?
 
-- callBack hell in nodejs / js
+22. What is callback hell in nodejs / js?
 
-- timer module in nodeJS
+23. What is timer module in nodeJS?
 
-- bodyParser in Nodejs
+24. What is bodyParser in Nodejs?
 
-- CORS in nodeJS
+25. What is CORS in nodeJS?
 
-- authentication in Nodejs
+26. What is authentication in Nodejs?
 
-- what r the packages used for fileUplod in nodeJS
+27. What are the packages used for file upload in nodeJS?
 
-- which package u used for sending mail from nodeJs ?
+28. Which package is used for sending mail from nodeJs?
 
-- how we are connecting our nodejs into database ?
+29. How are we connecting our nodejs to database?
 
-- how to handle Environment variables in nodeJs ?
+30. How to handle environment variables in nodeJs?
 
-- which package used for password bcrypt ?
+31. Which package is used for password encryption (bcrypt)?
 
-- what should be the foldeer structure of our nodeJS project? 
+32. What should be the folder structure of our nodeJS project?
 
-- what is eJS ?
+33. What is EJS?
 
-- difference between queryParams and request.params ?
+34. Difference between queryParams and request.params?
 
-- how to integrate google authentication?
+35. How to integrate google authentication?
 
-- what is webSocket ?
+36. What is webSocket?
 
-- how to manage session in nodeJS?
+37. How to manage session in nodeJS?
 
-- how to create database Modal ? 
+38. How to create database model?
 
-- why we use mongoose , not mongoDb ?
-    Ans :-  like prisma is ORM ( Object-Relational Mapper ) for SQL, monggose is ODM ( Object-Document Mapper ) for mongoDB right ?
+39. Why we use mongoose, not mongoDb?
+    Ans: Like Prisma is ORM (Object-Relational Mapper) for SQL, Mongoose is ODM (Object-Document Mapper) for MongoDB
 
-- what is cluster in nodeJs ?
+40. What is cluster in nodeJs?
 
-- How to implement search functionality in NodeJS and mongoDB ?
+41. How to implement search functionality in NodeJS and mongoDB?
