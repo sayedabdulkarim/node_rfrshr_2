@@ -18,3 +18,49 @@
 - what is module in nodejs
 
 - How do you create a nodejs application
+
+- middleware in nodeJS
+
+- how does nodeJs handle concurrency , even it is single threaded
+
+- what is control flow in nodeJS
+
+- eventLoop in nodeJS
+
+- disadvantages if nodeJS
+
+- can we use both sql and nodeJs
+
+- what is repel Environment in nodeJS
+
+- example of inbuilt module in nodeJS
+
+- package.json in nodeJS
+
+- how to write helloWorld in server ( with / without express )
+
+- why we use ExpressJs ?
+
+- promises in nodeJs ?
+
+- eventDriven programming in NodeJS
+
+- buffer in nodeJS
+
+- streams in nodeJs
+
+- callBack hell in nodejs / js
+
+- timer module in nodeJS
+
+- bodyParser in Nodejs
+
+- CORS in nodeJS
+
+- authentication in Nodejs
+
+- what r the packages used for fileUplod in nodeJS
+
+- which package u used for sending mail from nodeJs ?
+
+- how we are connecting our nodejs into database ?
