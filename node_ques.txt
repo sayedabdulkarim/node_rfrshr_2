@@ -13,3 +13,8 @@
   | Used for   | Frontend                 | Backend             |
   | Example    | document.querySelector() | fs.readFile()       |
 
+- nodejs is singleThreaded ?
+
+- what is module in nodejs
+
+- How do you create a nodejs application
