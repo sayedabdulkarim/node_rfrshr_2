@@ -20,6 +20,7 @@
 6. How do you create a nodejs application?
 
 7. What is middleware in nodeJS?
+  - we can think it like a gateKeeper, which check as per the logic we mentioned in our middleware, just befofe the route handler and response
 
 8. How does nodeJs handle concurrency, even though it is single threaded?
 
