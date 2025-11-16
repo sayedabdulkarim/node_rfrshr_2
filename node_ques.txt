@@ -90,3 +90,43 @@
 40. What is cluster in nodeJs?
 
 41. How to implement search functionality in NodeJS and mongoDB?
+
+===
+
+42. What is async/await? How is it different from Promises?
+
+43. How to handle errors in async/await? (try/catch pattern)
+
+44. Explain Promise.all(), Promise.race(), Promise.allSettled()
+
+45. What is input validation? How to use Joi or express-validator?
+
+46. What are MongoDB indexes? Why are they important for performance?
+
+47. Explain MongoDB aggregation pipeline with example
+
+48. What is rate limiting? How to implement it in Express?
+
+49. What security packages should be used? (Helmet, express-validator, etc.)
+
+50. How to prevent SQL injection and XSS attacks in Node.js?
+
+51. What is the difference between PM2 and nodemon?
+
+52. How to implement logging in production? (Winston, Morgan)
+
+53. What is Redis? How to use it for caching in Node.js?
+
+54. How to handle memory leaks in Node.js?
+
+55. Explain MongoDB transactions with example
+
+56. What is soft delete? How to implement it?
+
+57. How to test APIs? (Jest, Supertest)
+
+58. What is the difference between unit testing and integration testing?
+
+59. How to optimize MongoDB queries? (indexing, lean(), select())
+
+60. What is Docker? Basic concepts for Node.js deployment
