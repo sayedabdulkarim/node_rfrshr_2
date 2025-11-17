@@ -53,6 +53,10 @@ It is a function that runs before the final route handler.
 
 ## Streams
 
+**Answer:** We use **streams** when we have to upload/process **large files** (> 10-50 MB) and **buffer** for smaller files (< 10 MB).
+
+**Why:** So stream reads files in **chunks** (piece by piece), but buffer reads in **one go** (entire file at once).
+
 **Resources:**
 
 - https://www.youtube.com/watch?v=m118HulDXOk
