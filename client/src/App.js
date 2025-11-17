@@ -8,6 +8,8 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import ProfileStream from './pages/ProfileStream';
+import ProfileWorker from './pages/ProfileWorker';
 import './App.css';
 
 function App() {
@@ -34,6 +36,22 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile/stream"
+                element={
+                  <ProtectedRoute>
+                    <ProfileStream />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile/worker"
+                element={
+                  <ProtectedRoute>
+                    <ProfileWorker />
                   </ProtectedRoute>
                 }
               />

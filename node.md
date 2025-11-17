@@ -65,6 +65,67 @@ It is a function that runs before the final route handler.
 
 ## Worker Threads
 
+## Ans: Worker Threads allow Node.js to run CPU-intensive tasks in separate threads.
+
+When to use:
+141 + - Image/video processing (resize, compress)
+142 + - Password hashing (bcrypt)
+143 + - Data encryption
+144 + - PDF generation
+145 + - Any heavy CPU computation
+
+Tumne perfectly observe kiya blocking vs non-blocking ka difference! Let me explain kya hua:
+
+---
+
+🔴 WITHOUT Worker Thread (BLOCKING):
+
+You clicked: Process WITHOUT Worker
+Server: "Main thread par CPU task chal raha hai"
+↓
+You opened: Dashboard
+↓
+Server: "Sorry bro, main thread busy hai! Wait karo!"
+↓
+Dashboard: Loading... Loading... Loading... ⏳
+↓
+After 5-10 seconds:
+Server: "Image processing done! Ab dashboard request handle kar sakta hun"
+↓
+Dashboard: ✅ Data loaded!
+
+Kya hua:
+
+- Main thread COMPLETELY FROZEN tha
+- Event loop BLOCKED tha
+- Koi bhi request (dashboard API) handle nahi ho saki
+- Server = Single-threaded limitation
+
+---
+
+🟢 WITH Worker Thread (NON-BLOCKING):
+
+You clicked: Process WITH Worker
+Server: "Worker thread ko bhej diya CPU task!"
+Main thread: "Main FREE hun! Aur requests handle kar sakta hun!"
+↓
+You opened: Dashboard
+↓
+Server: "Bilkul! Dashboard request instantly handle karta hun!"
+↓
+Dashboard: ✅ Data loaded IMMEDIATELY!
+↓
+Background mein:
+Worker: "Main image process kar raha hun... done!"
+
+Kya hua:
+
+- Worker thread alag se CPU task kar raha tha
+- Main thread FREE tha
+- Event loop RESPONSIVE tha
+- Dashboard API request turant handle hui
+- Server = Multi-threaded power!
+
 ---
 
 ## Monolithic and Microservice Architecture

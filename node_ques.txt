@@ -130,3 +130,32 @@
 59. How to optimize MongoDB queries? (indexing, lean(), select())
 
 60. What is Docker? Basic concepts for Node.js deployment
+
+61. If 100 users simultaneously try to resize images, should we use worker threads?
+    What is Worker Pool and why is it needed?
+
+    Answer:
+    - YES, use worker threads BUT with Worker Pool (not unlimited workers!)
+
+    Problem without Worker Pool:
+    - Spawning 100 workers = 100 threads = 5-10 GB RAM = Server crash!
+    - CPU overload (context switching overhead)
+
+    Solution - Worker Pool:
+    - Limit workers to CPU cores (e.g., 4-8 workers max)
+    - Queue remaining requests (FIFO)
+    - As workers finish, they pick next task from queue
+
+    Benefits:
+    ✅ Server stays responsive (non-blocking)
+    ✅ Controlled resource usage (limited workers)
+    ✅ All requests eventually processed (queued)
+    ✅ No server crash or overload
+
+    Implementation:
+    - Manual: Create WorkerPool class with queue
+    - Production: Use Bull Queue + Redis (persistent queue)
+
+    Optimal Worker Pool Size = Number of CPU cores (or CPU cores × 2 for I/O tasks)
+
+    Real-world: Instagram, YouTube use this pattern for image/video processing
