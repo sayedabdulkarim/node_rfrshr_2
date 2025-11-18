@@ -134,6 +134,12 @@ Kya hua:
 
 ## BodyParser
 
+bodyParser (express.json()):
+
+- Frontend se JSON data ko readable format mein convert karta hai
+- Bina iske req.body = undefined
+- Iske saath req.body = actual data ✅
+
 ---
 
 ## FileSystem Module
