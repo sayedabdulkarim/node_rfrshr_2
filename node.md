@@ -4,6 +4,11 @@
 
 Node.js is a runtime environment that lets you run JavaScript outside the browser — mainly on the server.
 
+nodeJS is singleThread, but for async it uses libuv which under the hood uses different thread to run parallary async
+items
+
+Libuv : Node.js ke andar ek C library hai jo async operations handle karti hai.
+
 **Resources:**
 
 - https://www.youtube.com/watch?v=y0aTs56DJWk
@@ -156,18 +161,22 @@ FileSystem (fs) module:
 ## WebSocket
 
 **WebSocket kya hai?**
+
 - Real-time, two-way communication between client and server
 - Connection open rahta hai (persistent connection)
 
 **Problem (Normal HTTP):**
+
 - Client puchta rehta → "Kuch naya hai?" (polling - slow!)
 - Server khud se data nahi bhej sakta
 
 **Solution (WebSocket):**
+
 - Connection open rahta → Server khud bhej deta! (instant!)
 - Bidirectional: Client ↔ Server (both ways)
 
 **Use cases:**
+
 1. Chat apps (WhatsApp, Telegram)
 2. Live notifications (Facebook, Instagram)
 3. Live scores (Cricbuzz)
