@@ -144,9 +144,38 @@ bodyParser (express.json()):
 
 ## FileSystem Module
 
+FileSystem (fs) module:
+
+- Node.js built-in module
+- Files/folders ke saath kaam karne ke liye
+- Read, write, delete, rename sab kar sakte ho
+- const fs = require('fs'); se use karo
+
 ---
 
 ## WebSocket
+
+**WebSocket kya hai?**
+- Real-time, two-way communication between client and server
+- Connection open rahta hai (persistent connection)
+
+**Problem (Normal HTTP):**
+- Client puchta rehta → "Kuch naya hai?" (polling - slow!)
+- Server khud se data nahi bhej sakta
+
+**Solution (WebSocket):**
+- Connection open rahta → Server khud bhej deta! (instant!)
+- Bidirectional: Client ↔ Server (both ways)
+
+**Use cases:**
+1. Chat apps (WhatsApp, Telegram)
+2. Live notifications (Facebook, Instagram)
+3. Live scores (Cricbuzz)
+4. Stock prices (Zerodha)
+5. Google Docs (real-time collaboration)
+6. Multiplayer games (PUBG)
+
+**Real-time chahiye = WebSocket use karo!**
 
 ---
 
