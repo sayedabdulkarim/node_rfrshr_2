@@ -9,6 +9,9 @@ items
 
 Libuv : Node.js ke andar ek C library hai jo async operations handle karti hai.
 
+so in Nodejs, all asyncode lived in NodeJS APIs, and NodeJS APIs send these to LIBUV, ,den LIBUV classify THread pool and KERnel Io works.
+den once complete, LIBUV sends only callbacks to callback queues, den from callback queues eventLoop checks, where it priotizes between Micro and macro , and send to callStack
+
 **Resources:**
 
 - https://www.youtube.com/watch?v=y0aTs56DJWk
