@@ -1,0 +1,190 @@
+# MongoDB Interview Questions (Beginner to Intermediate)
+
+## BEGINNER LEVEL
+
+## 1. What is MongoDB? How is it different from SQL databases?
+
+## 2. What is a document in MongoDB?
+
+## 3. What is a collection in MongoDB?
+
+## 4. What is the default port of MongoDB?
+
+## 5. How to connect MongoDB with Node.js?
+
+## 6. What is Mongoose? Why do we use it?
+
+## 7. How to create a schema in Mongoose?
+
+## 8. What are the basic CRUD operations in MongoDB?
+
+## 9. How to insert a document in MongoDB?
+
+## 10. How to find documents in MongoDB?
+
+## 11. How to update a document in MongoDB?
+
+## 12. How to delete a document in MongoDB?
+
+## 13. What is _id in MongoDB? Is it mandatory?
+
+## 14. What is the difference between MongoDB and MySQL?
+
+## 15. What is NoSQL database? Give examples.
+
+## 16. How to install MongoDB on your system?
+
+## 17. What is mongosh (MongoDB Shell)?
+
+## 18. What are MongoDB data types?
+
+## 19. How to show all databases in MongoDB?
+
+## 20. How to create a database in MongoDB?
+
+## 21. How to drop a database in MongoDB?
+
+## 22. What is the use of .find() method?
+
+## 23. What is the difference between findOne() and find()?
+
+## 24. How to limit results in MongoDB query?
+
+## 25. How to sort documents in MongoDB?
+
+## 26. What is the use of .countDocuments()?
+
+## 27. How to check if MongoDB is running?
+
+## 28. What is the difference between updateOne() and updateMany()?
+
+## 29. What is the use of $set operator?
+
+## 30. What is the use of $inc operator?
+
+---
+
+## INTERMEDIATE LEVEL
+
+## 31. How to fetch data from multiple collections (userList, order, productList) in a single query?
+   - userList: {_id, name, email}
+   - order: {_id, userId, productId, quantity, orderDate}
+   - productList: {_id, name, price, category}
+
+## 32. What is MongoDB Aggregation Pipeline? Explain stages.
+
+## 33. What are MongoDB Indexes? Why are they important for performance?
+
+## 34. How to create indexes in MongoDB? What types exist?
+
+## 35. How to implement pagination in MongoDB (with and without aggregation)?
+
+## 36. What is the difference between find() and aggregate()?
+
+## 37. How to optimize MongoDB queries for better performance?
+
+## 38. What are MongoDB Transactions? When to use them?
+
+## 39. What is Soft Delete? How to implement it?
+
+## 40. How to implement search functionality in MongoDB?
+
+## 41. What is the difference between embedding and referencing in MongoDB?
+
+## 42. How to perform case-insensitive search in MongoDB?
+
+## 43. What is $lookup in MongoDB? How to use it?
+
+## 44. What is $unwind in aggregation? When to use it?
+
+## 45. What is $group in aggregation? Give example.
+
+## 46. What is $match in aggregation pipeline?
+
+## 47. What is $project in aggregation? How is it different from .select()?
+
+## 48. How to join 2 or more collections in MongoDB?
+
+## 49. What are aggregation operators? ($sum, $avg, $min, $max, etc.)
+
+## 50. How to handle MongoDB connection in production?
+
+## 51. What is connection pooling in MongoDB?
+
+## 52. What is the difference between $lookup and $graphLookup?
+
+## 53. How to count documents efficiently in MongoDB?
+
+## 54. What is the difference between deleteOne(), deleteMany(), and findOneAndDelete()?
+
+## 55. How to update nested objects in MongoDB?
+
+## 56. How to update arrays in MongoDB documents?
+
+## 57. What are MongoDB Schema Design patterns?
+
+## 58. What is MongoDB Replication?
+
+## 59. What is MongoDB Sharding?
+
+## 60. How to handle duplicate key errors in MongoDB?
+
+## 61. What is $addFields and $set in aggregation?
+
+## 62. How to implement sorting with pagination?
+
+## 63. What is the difference between save() and create() in Mongoose?
+
+## 64. What is the difference between insertOne() and insertMany()?
+
+## 65. How to implement full-text search in MongoDB?
+
+## 66. What are TTL (Time To Live) indexes? When to use them?
+
+## 67. How to perform bulk operations in MongoDB?
+
+## 68. What is $facet in aggregation? Give use case.
+
+## 69. What is the difference between lean() and toObject() in Mongoose?
+
+## 70. How to implement autocomplete/suggest search in MongoDB?
+
+## 71. What are the best practices for MongoDB schema design?
+
+## 72. How to filter nested arrays in MongoDB?
+
+## 73. How to use $push and $addToSet operators?
+
+## 74. What is the difference between $push and $pull?
+
+## 75. How to implement role-based access control in MongoDB?
+
+## 76. What is $bucket and $bucketAuto in aggregation?
+
+## 77. How to handle MongoDB connection failures in production?
+
+## 78. What is the use of .explain() in MongoDB?
+
+## 79. How to check query performance in MongoDB?
+
+## 80. What is the difference between unique index and sparse index?
+
+## 81. How to create compound indexes in MongoDB?
+
+## 82. What is the use of $regex operator?
+
+## 83. How to implement search, filter, sort, pagination in single API?
+
+## 84. What are Mongoose middleware/hooks? (pre, post)
+
+## 85. How to validate data in Mongoose schema?
+
+## 86. What is populate() in Mongoose? How does it work?
+
+## 87. What is the difference between $eq, $ne, $gt, $gte, $lt, $lte?
+
+## 88. How to use $or and $and operators in MongoDB?
+
+## 89. What is the use of $in and $nin operators?
+
+## 90. How to handle pagination for large datasets efficiently?
