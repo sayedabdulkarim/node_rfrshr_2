@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { todoAPI } from '../services/api';
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const { user, getRoleNames, hasPermission } = useAuth();
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [editingId, setEditingId] = useState(null);
@@ -114,7 +114,22 @@ const Dashboard = () => {
 
   return (
     <div style={styles.container}>
-      <h1>Dashboard - {user.name}</h1>
+      <div style={styles.header}>
+        <h1>Dashboard - {user.name}</h1>
+        <div style={styles.userInfo}>
+          <span style={styles.roleLabel}>UserType: </span>
+          <span style={styles.roleBadge}>
+            {getRoleNames().length > 0 ? getRoleNames().join(', ') : 'No Role'}
+          </span>
+        </div>
+      </div>
+
+      {/* Permission-based UI example */}
+      {hasPermission('manage_users') && (
+        <div style={styles.adminBanner}>
+          Admin Panel Access Available
+        </div>
+      )}
 
       {error && (
         <div style={styles.errorBanner}>
@@ -220,6 +235,33 @@ const styles = {
     maxWidth: '800px',
     margin: '0 auto',
     padding: '2rem'
+  },
+  header: {
+    marginBottom: '1.5rem'
+  },
+  userInfo: {
+    marginTop: '0.5rem'
+  },
+  roleLabel: {
+    color: '#666',
+    fontWeight: 'bold'
+  },
+  roleBadge: {
+    backgroundColor: '#007bff',
+    color: 'white',
+    padding: '0.25rem 0.75rem',
+    borderRadius: '20px',
+    fontSize: '0.9rem',
+    textTransform: 'capitalize'
+  },
+  adminBanner: {
+    backgroundColor: '#28a745',
+    color: 'white',
+    padding: '0.75rem 1rem',
+    borderRadius: '4px',
+    marginBottom: '1rem',
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   errorBanner: {
     backgroundColor: '#f8d7da',

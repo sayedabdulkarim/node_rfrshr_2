@@ -28,11 +28,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const userData = await authAPI.login(email, password);
 
-      // Store user data with token
+      // Store user data with token and roles
       const userToStore = {
         id: userData._id,
         email: userData.email,
         name: userData.name,
+        roles: userData.roles || [],
         token: userData.token
       };
 
@@ -52,11 +53,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const userData = await authAPI.register(name, email, password);
 
-      // Store user data with token
+      // Store user data with token and roles
       const userToStore = {
         id: userData._id,
         email: userData.email,
         name: userData.name,
+        roles: userData.roles || [],
         token: userData.token
       };
 
@@ -77,13 +79,34 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  // Helper: Check if user has specific role
+  const hasRole = (roleName) => {
+    if (!user || !user.roles) return false;
+    return user.roles.some(role => role.name === roleName);
+  };
+
+  // Helper: Check if user has specific permission
+  const hasPermission = (permission) => {
+    if (!user || !user.roles) return false;
+    return user.roles.some(role => role.permissions?.includes(permission));
+  };
+
+  // Helper: Get user's role names as array
+  const getRoleNames = () => {
+    if (!user || !user.roles) return [];
+    return user.roles.map(role => role.name);
+  };
+
   const value = {
     user,
     login,
     register,
     logout,
     loading,
-    isAuthenticated: !!user
+    isAuthenticated: !!user,
+    hasRole,
+    hasPermission,
+    getRoleNames
   };
 
   return (

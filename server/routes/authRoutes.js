@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const Role = require("../models/Role");
 const { protect } = require("../middleware/auth");
 
 // Generate JWT Token
@@ -24,18 +25,26 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "User already exists" });
     }
 
-    // Create user
+    // Get default 'user' role
+    const defaultRole = await Role.findOne({ name: 'user' });
+
+    // Create user with default role
     const user = await User.create({
       name,
       email,
       password,
+      roles: defaultRole ? [defaultRole._id] : []
     });
 
     if (user) {
+      // Populate roles for response
+      await user.populate('roles', 'name permissions');
+
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
+        roles: user.roles,
         token: generateToken(user._id),
       });
     }
@@ -52,8 +61,10 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check for user
-    const user = await User.findOne({ email }).select("+password");
+    // Check for user with roles populated
+    const user = await User.findOne({ email })
+      .select("+password")
+      .populate('roles', 'name permissions');
 
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
@@ -70,6 +81,7 @@ router.post("/login", async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      roles: user.roles,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -82,10 +94,12 @@ router.post("/login", async (req, res) => {
 // @desc    Get current user
 // @access  Private
 router.get("/me", protect, async (req, res) => {
+  const user = await User.findById(req.user._id).populate('roles', 'name permissions');
   res.json({
-    _id: req.user._id,
-    name: req.user.name,
-    email: req.user.email,
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    roles: user.roles,
   });
 });
 

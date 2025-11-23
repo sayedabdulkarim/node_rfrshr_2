@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
+  roles: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role'
+  }],
   createdAt: {
     type: Date,
     default: Date.now
