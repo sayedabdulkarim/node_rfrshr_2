@@ -188,3 +188,207 @@
 ## 89. What is the use of $in and $nin operators?
 
 ## 90. How to handle pagination for large datasets efficiently?
+
+---
+
+## ADVANCED LEVEL
+
+## 91. What is WiredTiger storage engine in MongoDB? How does it work?
+
+## 92. Explain MongoDB Replica Set architecture (Primary, Secondary, Arbiter).
+
+## 93. How does MongoDB election process work when primary goes down?
+
+## 94. What are Write Concerns in MongoDB? (w:1, w:majority, w:0)
+
+## 95. What are Read Concerns in MongoDB? (local, majority, linearizable)
+
+## 96. What are Read Preferences in MongoDB? (primary, secondary, nearest)
+
+## 97. How does MongoDB Sharding work? Explain shard key selection.
+
+## 98. What is the difference between Range-based and Hash-based sharding?
+
+## 99. What are Chunks in MongoDB sharding? How does chunk migration work?
+
+## 100. What is a Config Server in MongoDB sharded cluster?
+
+## 101. What is mongos router in MongoDB? How does it work?
+
+## 102. How to design a shard key for high cardinality and even distribution?
+
+## 103. What are the problems with monotonically increasing shard keys?
+
+## 104. What is Change Streams in MongoDB? How to implement real-time updates?
+
+## 105. How to implement event-driven architecture using Change Streams?
+
+## 106. What is Oplog in MongoDB? How is it used in replication?
+
+## 107. What is the Oplog size limit? How to configure it?
+
+## 108. How to implement MongoDB caching with Redis?
+
+## 109. What is the difference between in-memory storage and WiredTiger?
+
+## 110. How to implement database migration in MongoDB?
+
+## 111. What is MongoDB Atlas? Explain its features.
+
+## 112. How to set up MongoDB Atlas cluster for production?
+
+## 113. What are MongoDB Atlas triggers and functions?
+
+## 114. How to implement full-text search with Atlas Search?
+
+## 115. What is the difference between $text search and Atlas Search?
+
+## 116. How to implement geospatial queries in MongoDB? (2d, 2dsphere indexes)
+
+## 117. How to find nearby locations using $near and $geoWithin?
+
+## 118. What is MapReduce in MongoDB? When to use it vs Aggregation?
+
+## 119. How to implement data archiving strategy in MongoDB?
+
+## 120. What are Capped Collections in MongoDB? When to use them?
+
+## 121. How to implement audit logging in MongoDB?
+
+## 122. What are MongoDB security best practices?
+
+## 123. How to implement field-level encryption in MongoDB?
+
+## 124. What is Client-Side Field Level Encryption (CSFLE)?
+
+## 125. How to implement MongoDB role-based authentication?
+
+## 126. What are MongoDB built-in roles? (read, readWrite, dbAdmin, etc.)
+
+## 127. How to create custom roles in MongoDB?
+
+## 128. How to enable and configure MongoDB authentication?
+
+## 129. What is SCRAM authentication in MongoDB?
+
+## 130. How to implement LDAP authentication with MongoDB?
+
+## 131. How to backup and restore MongoDB database?
+
+## 132. What is the difference between mongodump and mongorestore vs file system snapshots?
+
+## 133. How to implement point-in-time recovery in MongoDB?
+
+## 134. What is journaling in MongoDB? How does it ensure durability?
+
+## 135. How to monitor MongoDB performance? (mongostat, mongotop)
+
+## 136. What metrics to monitor in MongoDB production environment?
+
+## 137. How to identify and fix slow queries in MongoDB?
+
+## 138. What is the MongoDB profiler? How to use it?
+
+## 139. How to analyze query plans using explain("executionStats")?
+
+## 140. What are covered queries in MongoDB? How to optimize for them?
+
+## 141. How to implement horizontal scaling in MongoDB?
+
+## 142. What is the CAP theorem? Where does MongoDB fit?
+
+## 143. How does MongoDB handle consistency vs availability trade-offs?
+
+## 144. What is eventual consistency in MongoDB replication?
+
+## 145. How to handle split-brain scenario in MongoDB?
+
+## 146. What are MongoDB limits? (document size, nesting depth, etc.)
+
+## 147. How to handle large files in MongoDB using GridFS?
+
+## 148. What is the difference between GridFS and storing files as BSON?
+
+## 149. How to implement data partitioning strategies in MongoDB?
+
+## 150. What is zone sharding in MongoDB? How to implement it?
+
+## 151. How to migrate from standalone MongoDB to replica set?
+
+## 152. How to migrate from replica set to sharded cluster?
+
+## 153. How to implement zero-downtime deployment with MongoDB?
+
+## 154. What are the best practices for MongoDB schema versioning?
+
+## 155. How to handle schema migrations in production MongoDB?
+
+## 156. What is $merge stage in aggregation? How to use it for materialized views?
+
+## 157. What is $out stage in aggregation? Difference from $merge?
+
+## 158. How to implement materialized views in MongoDB?
+
+## 159. What are Wildcard indexes in MongoDB? When to use them?
+
+## 160. What is the difference between multikey index and compound index?
+
+## 161. How to implement time-series data storage in MongoDB?
+
+## 162. What are Time-Series Collections in MongoDB 5.0+?
+
+## 163. How to optimize aggregation pipeline for large datasets?
+
+## 164. What is allowDiskUse in aggregation? When to use it?
+
+## 165. How to implement cursor-based pagination for better performance?
+
+## 166. What is the difference between skip-limit and cursor-based pagination?
+
+## 167. How to handle concurrent writes in MongoDB?
+
+## 168. What is Optimistic Locking in MongoDB? How to implement it?
+
+## 169. What is the difference between findAndModify and updateOne?
+
+## 170. How to implement distributed locks using MongoDB?
+
+## 171. What is $sample stage in aggregation? Use cases?
+
+## 172. How to implement random document selection efficiently?
+
+## 173. What are $expr and $function in aggregation?
+
+## 174. How to use JavaScript in MongoDB aggregation ($function, $accumulator)?
+
+## 175. What is the performance impact of using JavaScript in queries?
+
+## 176. How to implement multi-tenant architecture in MongoDB?
+
+## 177. What are the strategies for multi-tenancy? (shared DB, separate DB, hybrid)
+
+## 178. How to handle cross-shard transactions in MongoDB?
+
+## 179. What are the limitations of MongoDB transactions?
+
+## 180. How to implement saga pattern for distributed transactions?
+
+## 181. What is MongoDB Realm? How does it work with mobile apps?
+
+## 182. How to implement offline-first sync with MongoDB Realm?
+
+## 183. What are aggregation pipeline optimizations done by MongoDB internally?
+
+## 184. How to use $planCacheStats to analyze query plans?
+
+## 185. What is the query plan cache in MongoDB?
+
+## 186. How to clear and rebuild indexes in MongoDB?
+
+## 187. What is index intersection in MongoDB?
+
+## 188. How to implement database-per-service pattern with MongoDB?
+
+## 189. What are the challenges of microservices with MongoDB?
+
+## 190. How to implement event sourcing with MongoDB?
