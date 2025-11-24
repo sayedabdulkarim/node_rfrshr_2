@@ -237,6 +237,21 @@ How to optimize performance to get faster responses?
 - Cache database queries and API responses
 - Implement HTTP caching headers (ETag, Cache-Control)
 
+  - Cache-Control: public, max-age=60 ← Humne set kiya, if agar user 60 sec, k pehle reload kiya then wo cache se utha k
+    dega .
+  - ETag = Data ka fingerprintKaise kaam karta hai:
+
+    1st Request:
+    Browser → Server: "Products de"
+    Server → Browser: "Ye lo data + ETag: abc123"
+    Browser: (data + etag store kar liya)
+
+    2nd Request:
+    Browser → Server: "Products de, mere paas ETag abc123 hai"
+    Server: (check karta hai - data same hai?)
+    → Same hai → "304 Not Modified" (data nahi bhejta)
+    → Change hua → "200 OK" + naya data + naya ETag
+
 ### 3. Database Optimization
 
 - Add indexes for frequently queried fields
