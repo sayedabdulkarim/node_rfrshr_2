@@ -223,6 +223,67 @@ How to manage multiple roles in a single table (like admin, superadmin, customer
 
 How to optimize performance to get faster responses?
 
+### 1. Event Loop Optimization
+
+- Avoid blocking the event loop with synchronous operations
+- Use `setImmediate()` or `process.nextTick()` to break up CPU-intensive tasks
+  - setImmediate we use to break loop, to freeup eventloop
+  - if we use nextTick , it will run first then setImeeditate. means it has the highest priority
+- Offload heavy computation to worker threads
+
+### 2. Caching
+
+- Use in-memory caching (Redis, Node-cache) for frequently accessed data
+- Cache database queries and API responses
+- Implement HTTP caching headers (ETag, Cache-Control)
+
+### 3. Database Optimization
+
+- Add indexes for frequently queried fields
+- Use connection pooling
+- Implement pagination for large datasets
+- Use `.lean()` in Mongoose when you don't need document methods
+
+### 4. Async Best Practices
+
+- Use `Promise.all()` for parallel async operations
+- Avoid async/await in loops - batch operations instead
+- Stream large files instead of loading into memory
+
+### 5. Memory Management
+
+- Monitor memory usage with `process.memoryUsage()`
+- Avoid memory leaks (unclosed connections, growing arrays)
+- Use streams for large data processing
+
+### 6. HTTP Optimization
+
+- Enable gzip/brotli compression
+- Use HTTP/2 when possible
+- Implement request rate limiting
+- Use a reverse proxy (Nginx) for static files
+
+### 7. Clustering
+
+```javascript
+const cluster = require("cluster");
+const numCPUs = require("os").cpus().length;
+
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  // Worker process - run your app
+}
+```
+
+### 8. Profiling Tools
+
+- `node --inspect` with Chrome DevTools
+- `clinic.js` for performance diagnostics
+- `0x` for flame graphs
+
 ---
 
 ## process.nextTick() vs setImmediate() vs setTimeout()
