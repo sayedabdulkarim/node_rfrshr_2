@@ -4,7 +4,7 @@
 
 ## 1. What is MongoDB? How is it different from SQL databases?
 
-  MongoDB is a NoSQL document-oriented database that stores data in JSON-like documents (BSON format).
+  MongoDB is a NoSQL document-oriented database that stores data in JSON (JavaScript Object Notation )-like documents (BSON ( Binary JSON) format).
 
   Key Differences from SQL:
 
@@ -123,6 +123,7 @@ router.post('/', protect, async (req, res) => {
    - find / findById
 
 ## 11. How to update a document in MongoDB?
+   - findByIdAndUpdate(), findOneAndUpdate(), updateOne(), updateMany()
 
 ## 12. How to delete a document in MongoDB?
 
