@@ -4,21 +4,120 @@
 
 ## 1. What is MongoDB? How is it different from SQL databases?
 
+  MongoDB is a NoSQL document-oriented database that stores data in JSON-like documents (BSON format).
+
+  Key Differences from SQL:
+
+  | SQL Databases                     | MongoDB                       |
+  |-----------------------------------|-------------------------------|
+  | Tables                            | Collections                   |
+  | Rows                              | Documents                     |
+  | Columns                           | Fields                        |
+  | Fixed schema                      | Flexible schema               |
+  | JOIN operations                   | Embedded documents or $lookup |
+  | Vertical scaling                  | Horizontal scaling (sharding) |
+  | ACID transactions (traditionally) | ACID transactions (4.0+)      |
+
+
 ## 2. What is a document in MongoDB?
+
+
+  A document is a record in MongoDB, similar to a row in SQL. It's stored in BSON (Binary JSON) format.
+
+  Example from your code (server/models/Todo.js:1-30):
+  {
+    _id: ObjectId("507f1f77bcf86cd799439011"),
+    user: ObjectId("507f191e810c19729de860ea"),
+    text: "Buy groceries",
+    completed: false,
+    createdAt: ISODate("2025-01-15T10:30:00Z"),
+    updatedAt: ISODate("2025-01-15T10:30:00Z")
+  }
 
 ## 3. What is a collection in MongoDB?
 
+A collection is a group of documents, similar to a table in SQL. Collections don't enforce a schema by default (flexible
+  structure).
+
+  In your app, you have 3 collections:
+  - users - Stores user accounts
+  - todos - Stores todo items
+  - roles - Stores role definitions with permissions
+
 ## 4. What is the default port of MongoDB?
+
+  27017 is the default port for MongoDB.
 
 ## 5. How to connect MongoDB with Node.js?
 
+ const mongoose = require('mongoose');
+
+  const connectDB = async () => {
+    try {
+      await mongoose.connect(process.env.MONGODB_URI);
+      console.log('MongoDB Connected...');
+    } catch (err) {
+      console.error('MongoDB connection error:', err.message);
+      process.exit(1);
+    }
+  };
+
 ## 6. What is Mongoose? Why do we use it?
+
+ Mongoose is an ODM (Object Data Modeling) library for MongoDB and Node.js.
+
+  Benefits:
+  - Schema validation
+  - Middleware/hooks (pre/post operations)
+  - Built-in type casting
+  - Query building helpers
+  - Relationship management (populate)
+  - Data validation
+
+  In your app: You use Mongoose for all database operations, with schemas for User, Todo, and Role models.
 
 ## 7. How to create a schema in Mongoose?
 
+const mongoose = require('mongoose');
+
+  const userSchema = new mongoose.Schema({
+    name: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+  });
+
+  const User = mongoose.model('User', userSchema);
+
 ## 8. What are the basic CRUD operations in MongoDB?
 
-## 9. How to insert a document in MongoDB?
+  CRUD = Create, Read, Update, Delete
+
+  | Operation | MongoDB Method            | Mongoose Method                              |
+  |-----------|---------------------------|----------------------------------------------|
+  | Create    | insertOne(), insertMany() | Model.create(), new Model().save()           |
+  | Read      | find(), findOne()         | Model.find(), Model.findById()               |
+  | Update    | updateOne(), updateMany() | Model.findByIdAndUpdate(), Model.updateOne() |
+  | Delete    | deleteOne(), deleteMany() | Model.findByIdAndDelete(), Model.deleteOne() |
+
+## 9. How to insert a document in MongoDB? ( by using create )
+
+router.post('/', protect, async (req, res) => {
+    try {
+      const todo = await Todo.create({
+        user: req.user._id,
+        text: req.body.text,
+        completed: false,
+      });
+      res.status(201).json(todo);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  });
 
 ## 10. How to find documents in MongoDB?
 
