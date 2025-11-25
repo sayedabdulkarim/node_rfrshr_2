@@ -120,6 +120,7 @@ router.post('/', protect, async (req, res) => {
   });
 
 ## 10. How to find documents in MongoDB?
+   - find / findById
 
 ## 11. How to update a document in MongoDB?
 
