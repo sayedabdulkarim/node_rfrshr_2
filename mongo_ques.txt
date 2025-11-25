@@ -127,7 +127,19 @@ router.post('/', protect, async (req, res) => {
 
 ## 12. How to delete a document in MongoDB?
 
+deleteOne, deleteMany, findByIdAndDelete, findOneAndDelete
+
 ## 13. What is _id in MongoDB? Is it mandatory?
+   - It is an Unique identifier for each document
+   - _id = Mandatory ✅
+   - Auto-generated if not provided ✅
+   - Always unique ✅
+
+   Benefits
+   ---
+   - Always unique
+   - Sortable by creation time
+   - No collision risk
 
 ## 14. What is the difference between MongoDB and MySQL?
 
