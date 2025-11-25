@@ -143,6 +143,22 @@ deleteOne, deleteMany, findByIdAndDelete, findOneAndDelete
 
 ## 14. What is the difference between MongoDB and MySQL?
 
+14. MongoDB vs MySQL
+
+  | Feature        | MongoDB                             | MySQL                            |
+  |----------------|-------------------------------------|----------------------------------|
+  | Type           | NoSQL (Document DB)                 | SQL (Relational DB)              |
+  | Data Storage   | Collections → Documents (JSON/BSON) | Tables → Rows                    |
+  | Schema         | Flexible (schema-less)              | Fixed (strict schema)            |
+  | Relationships  | Embedded docs or $lookup            | JOINs (foreign keys)             |
+  | Scaling        | Horizontal (sharding)               | Vertical (bigger server)         |
+  | Query Language | MongoDB Query Language              | SQL                              |
+  | ACID           | Yes (4.0+, single doc always)       | Yes (full support)               |
+  | Use Case       | Flexible data, rapid changes        | Structured data, complex queries |
+  | Performance    | Fast reads/writes (denormalized)    | Fast with proper indexing        |
+  | Example        | User profiles, logs, real-time      | Banking, inventory, accounting   |
+
+
 ## 15. What is NoSQL database? Give examples.
 
 ## 16. How to install MongoDB on your system?
