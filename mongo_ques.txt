@@ -174,7 +174,43 @@ deleteOne, deleteMany, findByIdAndDelete, findOneAndDelete
 
 ## 19. What are MongoDB data types?
 
+MongoDB supports various BSON data types:
+
+| Data Type     | Description                          | Example                              |
+|---------------|--------------------------------------|--------------------------------------|
+| String        | UTF-8 text                           | `"Hello World"`                      |
+| Integer       | 32-bit or 64-bit numbers             | `42`, `NumberInt(42)`                |
+| Double        | 64-bit floating point                | `3.14`                               |
+| Boolean       | true or false                        | `true`, `false`                      |
+| ObjectId      | 12-byte unique identifier            | `ObjectId("507f1f77bcf86cd799439011")` |
+| Date          | Date/time in milliseconds            | `ISODate("2025-01-15T10:30:00Z")`    |
+| Array         | List of values                       | `["apple", "banana", "cherry"]`      |
+| Object        | Embedded document                    | `{ name: "John", age: 30 }`          |
+| Null          | Null/empty value                     | `null`                               |
+| Binary Data   | Binary data (images, files)          | `BinData(0, "base64string")`         |
+| Decimal128    | High-precision decimal               | `NumberDecimal("19.99")`             |
+| Timestamp     | Internal MongoDB timestamp           | `Timestamp(1234567890, 1)`           |
+| RegExp        | Regular expression                   | `/pattern/i`                         |
+
 ## 20. How to show all databases in MongoDB?
+
+```javascript
+// In mongosh:
+show dbs
+
+// Or using command:
+db.adminCommand({ listDatabases: 1 })
+```
+
+**Output Example:**
+```
+admin    40.00 KiB
+config   60.00 KiB
+local    40.00 KiB
+myapp    85.00 KiB
+```
+
+**Note:** Empty databases (with no collections) won't show in the list.
 
 ## 21. How to create a database in MongoDB?
 
