@@ -10,6 +10,7 @@ const todoRoutes = require('./routes/todoRoutes');
 const testPasswordRoute = require('./routes/testPasswordRoute');
 const fileRoutes = require('./routes/fileRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
 
@@ -84,6 +85,9 @@ app.use('/api/files', fileRoutes);
 
 // Profile routes (Profile picture upload - Buffer vs Stream)
 app.use('/api/profile', profileRoutes);
+
+// Order routes (Aggregation practice)
+app.use('/api/orders', orderRoutes);
 
 // ============ ERROR HANDLING MIDDLEWARE ============
 

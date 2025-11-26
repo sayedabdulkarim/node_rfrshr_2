@@ -1,0 +1,12 @@
+[
+  { "_id": "prod001", "name": "iPhone 15", "price": 79999, "category": "mobile" },
+  { "_id": "prod002", "name": "AirPods Pro", "price": 24999, "category": "audio" },
+  { "_id": "prod003", "name": "MacBook Air", "price": 99999, "category": "laptop" },
+  { "_id": "prod004", "name": "iPad Pro", "price": 89999, "category": "tablet" },
+  { "_id": "prod005", "name": "Apple Watch", "price": 44999, "category": "watch" },
+  { "_id": "prod006", "name": "Samsung S24", "price": 69999, "category": "mobile" },
+  { "_id": "prod007", "name": "Galaxy Buds", "price": 12999, "category": "audio" },
+  { "_id": "prod008", "name": "Galaxy Watch", "price": 29999, "category": "watch" },
+  { "_id": "prod009", "name": "Galaxy Tab", "price": 54999, "category": "tablet" },
+  { "_id": "prod010", "name": "Samsung TV", "price": 79999, "category": "tv" }
+]
