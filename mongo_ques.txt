@@ -245,6 +245,35 @@ myapp    85.00 KiB
 
 ## 33. What is MongoDB Aggregation Pipeline? Explain stages.
 
+ Ans:  if we want to do multi operation within a single query , we will use aggregator
+
+⏺ 100% Sahi bola bhai!
+
+  Simple Rule:
+
+  | Situation                           | Method      |
+  |-------------------------------------|-------------|
+  | Single operation (fetch, filter)    | find()      |
+  | Multiple operations in single query | aggregate() |
+
+  Aggregate = Pipeline (ek ke baad ek operation)
+
+  Order.aggregate([
+    { $match: ... },    // Step 1: Filter
+    { $lookup: ... },   // Step 2: Join
+    { $group: ... },    // Step 3: Group
+    { $sort: ... },     // Step 4: Sort
+    { $project: ... }   // Step 5: Select fields
+  ])
+
+  Data ek step se nikalta hai → next step mein jaata hai → final result
+
+  Interview mein bol:
+
+  "Jab multiple operations jaise filtering, joining, grouping, sorting ek saath karni ho single query mein, tab aggregation pipeline
+   use karte hain. Ye SQL ke complex queries jaisa hai with JOINs, GROUP BY, ORDER BY sab ek mein."
+
+
 ## 34. What are MongoDB Indexes? Why are they important for performance?
 
 ## 35. How to create indexes in MongoDB? What types exist?
