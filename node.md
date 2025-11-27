@@ -327,6 +327,22 @@ Write basic code to create a server.
 
 ## MVC, MVVM (Different Architecture)
 
+Monolithic: [ Ek bada dabba - sab kuch andar ]
+
+MVC: [ Model ] ←→ [ Controller ] ←→ [ View ]
+
+Microservices: [ Auth ] [ User ] [ Payment ] [ Order ]
+↓ ↓ ↓ ↓
+DB1 DB2 DB3 DB4
+
+Layered: [ Controller ]
+↓
+[ Service ]
+↓
+[ Repository ]
+↓
+[ Database ]
+
 ---
 
 ## Google Login (Web and Mobile)
