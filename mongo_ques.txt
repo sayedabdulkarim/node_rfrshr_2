@@ -239,9 +239,7 @@ myapp    85.00 KiB
 ## INTERMEDIATE LEVEL
 
 ## 32. How to fetch data from multiple collections (userList, order, productList) in a single query?
-   - userList: {_id, name, email}
-   - order: {_id, userId, productId, quantity, orderDate}
-   - productList: {_id, name, price, category}
+  Ans: refer 33 answer.
 
 ## 33. What is MongoDB Aggregation Pipeline? Explain stages.
 
