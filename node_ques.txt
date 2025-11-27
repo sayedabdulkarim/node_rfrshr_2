@@ -1,3 +1,34 @@
+# Node.js Interview Questions (Beginner to Advanced)
+
+---
+## ALL QUESTIONS AT A GLANCE
+
+BASIC (1-20)                    INTERMEDIATE (21-41)           ADVANCED (42-61)
+─────────────────────────────────────────────────────────────────────────────────────────
+1.  Optimise Express perf?      21. Streams in Node?           42. async/await vs Promise?
+2.  Pagination MongoDB?         22. Callback hell?             43. Error handling async?
+3.  JS vs NodeJS?               23. Timer module?              44. Promise.all/race/allSettled?
+4.  NodeJS single threaded?     24. bodyParser?                45. Input validation Joi?
+5.  What is module?             25. CORS in Node?              46. MongoDB indexes?
+6.  Create NodeJS app?          26. Authentication?            47. Aggregation pipeline?
+7.  What is middleware?         27. File upload packages?      48. Rate limiting?
+8.  Handle concurrency?         28. Mail sending package?      49. Security packages?
+9.  What is control flow?       29. Connect to database?       50. Prevent SQL inj & XSS?
+10. What is eventLoop?          30. Environment variables?     51. PM2 vs nodemon?
+11. Disadvantages NodeJS?       31. Password encryption?       52. Logging Winston/Morgan?
+12. SQL with NodeJS?            32. Folder structure?          53. Redis caching?
+13. REPL environment?           33. What is EJS?               54. Memory leaks?
+14. Inbuilt modules?            34. queryParams vs params?     55. MongoDB transactions?
+15. What is package.json?       35. Google authentication?     56. Soft delete?
+16. HelloWorld server?          36. What is WebSocket?         57. Test APIs Jest?
+17. Why ExpressJS?              37. Session management?        58. Unit vs Integration test?
+18. Promises in Node?           38. Create database model?     59. Optimize MongoDB queries?
+19. Event-driven programming?   39. Mongoose vs MongoDB?       60. Docker basics?
+20. What is buffer?             40. What is cluster?           61. Worker threads & Pool?
+                                41. Search functionality?
+
+---
+
 1. How can we optimise express js performance?
 
 2. Implement pagination with mongo db in nodejs ( with or without aggregation )

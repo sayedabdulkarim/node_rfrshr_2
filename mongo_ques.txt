@@ -1,4 +1,112 @@
-# MongoDB Interview Questions (Beginner to Intermediate)
+# MongoDB Interview Questions (Beginner to Advanced)
+
+---
+## ALL QUESTIONS AT A GLANCE
+
+BASIC (1-32)              INTERMEDIATE (33-92)           ADVANCED (93-192)
+─────────────────────────────────────────────────────────────────────────────────
+1.  What is MongoDB?      33. Multiple collections       93.  WiredTiger engine
+2.  What is document?     34. Aggregation Pipeline       94.  Replica Set arch
+3.  What is collection?   35. MongoDB Indexes            95.  Election process
+4.  Default port?         36. Create indexes             96.  Write Concerns
+5.  Connect Node.js?      37. Pagination                 97.  Read Concerns
+6.  What is Mongoose?     38. find() vs aggregate()      98.  Read Preferences
+7.  Create schema?        39. Optimize queries           99.  Sharding work
+8.  CRUD operations?      40. Transactions               100. Range vs Hash shard
+9.  Insert document?      41. Soft Delete                101. Chunks & migration
+10. HTTP Status Codes?    42. Search functionality       102. Config Server
+11. Find documents?       43. Embed vs Reference         103. mongos router
+12. Update document?      44. Case-insensitive search    104. Shard key design
+13. Delete document?      45. $lookup                    105. Monotonic shard keys
+14. What is _id?          46. $unwind                    106. Change Streams
+15. MongoDB vs MySQL?     47. $group                     107. Event-driven arch
+16. NoSQL database?       48. $match                     108. Oplog
+17. What is Redis?        49. $project                   109. Oplog size
+18. Install MongoDB?      50. Join collections           110. MongoDB + Redis
+19. What is mongosh?      51. Aggregation operators      111. In-memory vs Wired
+20. MongoDB data types?   52. Production connection      112. Database migration
+21. Show all databases?   53. Connection pooling         113. MongoDB Atlas
+22. Create database?      54. $lookup vs $graphLookup    114. Atlas prod setup
+23. Drop database?        55. Count efficiently          115. Atlas triggers
+24. Use of find()?        56. delete methods             116. Atlas Search
+25. findOne() vs find()?  57. Update nested objects      117. $text vs Atlas
+26. Limit results?        58. Update arrays              118. Geospatial queries
+27. Sort documents?       59. Schema Design patterns     119. $near & $geoWithin
+28. countDocuments()?     60. Replication                120. MapReduce
+29. MongoDB running?      61. Sharding                   121. Data archiving
+30. updateOne vs Many?    62. Duplicate key errors       122. Capped Collections
+31. $set operator?        63. $addFields & $set          123. Audit logging
+32. $inc operator?        64. Sort with pagination       124. Security practices
+                          65. save() vs create()         125. Field encryption
+                          66. insertOne vs Many          126. CSFLE
+                          67. Full-text search           127. Role-based auth
+                          68. TTL indexes                128. Built-in roles
+                          69. Bulk operations            129. Custom roles
+                          70. $facet                     130. Enable auth
+                          71. lean() vs toObject()       131. SCRAM auth
+                          72. Autocomplete search        132. LDAP auth
+                          73. Schema best practices      133. Backup & restore
+                          74. Filter nested arrays       134. mongodump vs snap
+                          75. $push & $addToSet          135. Point-in-time recov
+                          76. $push vs $pull             136. Journaling
+                          77. Role-based access          137. Monitor performance
+                          78. $bucket                    138. Production metrics
+                          79. Connection failures        139. Slow queries
+                          80. .explain()                 140. MongoDB profiler
+                          81. Query performance          141. explain(execStats)
+                          82. unique vs sparse idx       142. Covered queries
+                          83. Compound indexes           143. Horizontal scaling
+                          84. $regex operator            144. CAP theorem
+                          85. Search+Filter+Sort         145. Consistency vs avail
+                          86. Mongoose middleware        146. Eventual consistency
+                          87. Schema validation          147. Split-brain
+                          88. populate()                 148. MongoDB limits
+                          89. Comparison operators       149. GridFS
+                          90. $or and $and               150. GridFS vs BSON
+                          91. $in and $nin               151. Data partitioning
+                          92. Large dataset paging       152. Zone sharding
+                                                         153. Standalone to replica
+                                                         154. Replica to sharded
+                                                         155. Zero-downtime deploy
+                                                         156. Schema versioning
+                                                         157. Schema migrations
+                                                         158. $merge stage
+                                                         159. $out stage
+                                                         160. Materialized views
+                                                         161. Wildcard indexes
+                                                         162. Multikey vs compound
+                                                         163. Time-series storage
+                                                         164. Time-Series Collect
+                                                         165. Optimize aggregation
+                                                         166. allowDiskUse
+                                                         167. Cursor pagination
+                                                         168. skip-limit vs cursor
+                                                         169. Concurrent writes
+                                                         170. Optimistic Locking
+                                                         171. findAndModify vs upd
+                                                         172. Distributed locks
+                                                         173. $sample stage
+                                                         174. Random document
+                                                         175. $expr & $function
+                                                         176. JS in aggregation
+                                                         177. JS performance
+                                                         178. Multi-tenant arch
+                                                         179. Multi-tenancy strat
+                                                         180. Cross-shard transact
+                                                         181. Transaction limits
+                                                         182. Saga pattern
+                                                         183. MongoDB Realm
+                                                         184. Offline-first sync
+                                                         185. Pipeline optimize
+                                                         186. $planCacheStats
+                                                         187. Query plan cache
+                                                         188. Rebuild indexes
+                                                         189. Index intersection
+                                                         190. DB-per-service
+                                                         191. Microservices issues
+                                                         192. Event sourcing
+
+---
 
 ## BEGINNER LEVEL
 
