@@ -1,0 +1,12 @@
+  Phase 1 ONLY:
+  ✅ Customer App (Menu, Cart, Order, COD)
+  ✅ Admin Panel (Basic - orders dekho, menu manage)
+  ✅ Backend APIs
+  ❌ Live tracking - BAAD MEIN
+  ❌ Delivery app - BAAD MEIN (pehle phone pe manage kar lena)
+  ❌ UPI payment - BAAD MEIN (COD se start)
+  ❌ Notifications - BAAD MEIN
+
+
+
+Reference for UI = https://github.com/enatega/food-delivery-singlevendor
