@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import ProfileStream from './pages/ProfileStream';
 import ProfileWorker from './pages/ProfileWorker';
+import TaskList from './pages/TaskList';
 import './App.css';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/tasks" element={<TaskList />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>

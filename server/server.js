@@ -11,6 +11,7 @@ const testPasswordRoute = require('./routes/testPasswordRoute');
 const fileRoutes = require('./routes/fileRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const taskRoutes = require('./demo/todoSearch/taskRoutes');
 
 const app = express();
 
@@ -88,6 +89,9 @@ app.use('/api/profile', profileRoutes);
 
 // Order routes (Aggregation practice)
 app.use('/api/orders', orderRoutes);
+
+// Task routes (Search, Filter, Sort, Pagination demo)
+app.use('/api/tasks', taskRoutes);
 
 // ============ ERROR HANDLING MIDDLEWARE ============
 

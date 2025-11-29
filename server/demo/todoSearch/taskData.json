@@ -1,0 +1,452 @@
+[
+  {
+    "title": "Complete React project documentation",
+    "description": "Write comprehensive docs for the dashboard component",
+    "status": "pending",
+    "priority": "high",
+    "category": "work",
+    "tags": ["react", "documentation", "frontend"],
+    "dueDate": "2025-02-15"
+  },
+  {
+    "title": "Buy groceries for the week",
+    "description": "Milk, eggs, bread, vegetables, fruits",
+    "status": "completed",
+    "priority": "medium",
+    "category": "shopping",
+    "tags": ["groceries", "weekly"],
+    "dueDate": "2025-01-20"
+  },
+  {
+    "title": "Morning yoga session",
+    "description": "30 minutes yoga and stretching",
+    "status": "pending",
+    "priority": "low",
+    "category": "health",
+    "tags": ["fitness", "morning", "routine"],
+    "dueDate": "2025-01-28"
+  },
+  {
+    "title": "Review MongoDB aggregation pipeline",
+    "description": "Study $match, $group, $lookup stages",
+    "status": "in_progress",
+    "priority": "high",
+    "category": "learning",
+    "tags": ["mongodb", "database", "backend"],
+    "dueDate": "2025-02-01"
+  },
+  {
+    "title": "Pay electricity bill",
+    "description": "Due amount Rs 2500",
+    "status": "pending",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["bills", "urgent", "monthly"],
+    "dueDate": "2025-01-25"
+  },
+  {
+    "title": "Call mom on her birthday",
+    "description": "Don't forget to wish her!",
+    "status": "completed",
+    "priority": "high",
+    "category": "personal",
+    "tags": ["family", "birthday"],
+    "dueDate": "2025-01-18"
+  },
+  {
+    "title": "Fix login bug in authentication",
+    "description": "JWT token not refreshing properly",
+    "status": "in_progress",
+    "priority": "high",
+    "category": "work",
+    "tags": ["bug", "authentication", "jwt"],
+    "dueDate": "2025-01-30"
+  },
+  {
+    "title": "Order new running shoes",
+    "description": "Nike or Adidas, size 10",
+    "status": "pending",
+    "priority": "low",
+    "category": "shopping",
+    "tags": ["fitness", "shoes", "online"],
+    "dueDate": "2025-02-10"
+  },
+  {
+    "title": "Schedule dentist appointment",
+    "description": "Regular checkup overdue",
+    "status": "pending",
+    "priority": "medium",
+    "category": "health",
+    "tags": ["medical", "checkup"],
+    "dueDate": "2025-02-05"
+  },
+  {
+    "title": "Learn TypeScript basics",
+    "description": "Complete first 5 chapters of the course",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "learning",
+    "tags": ["typescript", "javascript", "frontend"],
+    "dueDate": "2025-02-20"
+  },
+  {
+    "title": "Submit tax documents",
+    "description": "Gather all receipts and file ITR",
+    "status": "pending",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["tax", "documents", "yearly"],
+    "dueDate": "2025-03-31"
+  },
+  {
+    "title": "Plan weekend trip to Goa",
+    "description": "Book hotels and flights",
+    "status": "pending",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["travel", "vacation", "weekend"],
+    "dueDate": "2025-02-28"
+  },
+  {
+    "title": "Deploy Node.js app to AWS",
+    "description": "Setup EC2 instance and configure nginx",
+    "status": "pending",
+    "priority": "high",
+    "category": "work",
+    "tags": ["deployment", "aws", "devops"],
+    "dueDate": "2025-02-08"
+  },
+  {
+    "title": "Buy birthday gift for sister",
+    "description": "She likes books and jewelry",
+    "status": "completed",
+    "priority": "medium",
+    "category": "shopping",
+    "tags": ["gift", "birthday", "family"],
+    "dueDate": "2025-01-22"
+  },
+  {
+    "title": "Start intermittent fasting",
+    "description": "16:8 schedule, track progress",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "health",
+    "tags": ["diet", "fasting", "routine"],
+    "dueDate": "2025-01-31"
+  },
+  {
+    "title": "Complete Docker tutorial",
+    "description": "Containerization fundamentals",
+    "status": "pending",
+    "priority": "medium",
+    "category": "learning",
+    "tags": ["docker", "devops", "containers"],
+    "dueDate": "2025-02-15"
+  },
+  {
+    "title": "Review monthly budget",
+    "description": "Check expenses and savings",
+    "status": "completed",
+    "priority": "medium",
+    "category": "finance",
+    "tags": ["budget", "monthly", "savings"],
+    "dueDate": "2025-01-28"
+  },
+  {
+    "title": "Organize home office",
+    "description": "Clean desk, organize cables",
+    "status": "pending",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["cleaning", "organization", "home"],
+    "dueDate": "2025-02-02"
+  },
+  {
+    "title": "Write unit tests for API",
+    "description": "Cover auth and todo endpoints",
+    "status": "pending",
+    "priority": "high",
+    "category": "work",
+    "tags": ["testing", "jest", "api"],
+    "dueDate": "2025-02-12"
+  },
+  {
+    "title": "Order protein supplements",
+    "description": "Whey protein and BCAA",
+    "status": "pending",
+    "priority": "low",
+    "category": "shopping",
+    "tags": ["fitness", "supplements", "health"],
+    "dueDate": "2025-02-18"
+  },
+  {
+    "title": "Get annual health checkup",
+    "description": "Full body checkup at Apollo",
+    "status": "pending",
+    "priority": "high",
+    "category": "health",
+    "tags": ["medical", "checkup", "yearly"],
+    "dueDate": "2025-02-25"
+  },
+  {
+    "title": "Practice DSA problems",
+    "description": "Solve 5 LeetCode problems daily",
+    "status": "in_progress",
+    "priority": "high",
+    "category": "learning",
+    "tags": ["dsa", "leetcode", "interview"],
+    "dueDate": "2025-03-15"
+  },
+  {
+    "title": "Renew car insurance",
+    "description": "Policy expires next month",
+    "status": "pending",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["insurance", "car", "renewal"],
+    "dueDate": "2025-02-20"
+  },
+  {
+    "title": "Plan surprise party for friend",
+    "description": "Invite 15 people, book venue",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "personal",
+    "tags": ["party", "friends", "celebration"],
+    "dueDate": "2025-02-14"
+  },
+  {
+    "title": "Refactor database queries",
+    "description": "Optimize slow aggregation pipelines",
+    "status": "pending",
+    "priority": "medium",
+    "category": "work",
+    "tags": ["optimization", "mongodb", "performance"],
+    "dueDate": "2025-02-22"
+  },
+  {
+    "title": "Buy new laptop charger",
+    "description": "65W USB-C charger",
+    "status": "completed",
+    "priority": "high",
+    "category": "shopping",
+    "tags": ["electronics", "laptop", "urgent"],
+    "dueDate": "2025-01-19"
+  },
+  {
+    "title": "Join gym membership",
+    "description": "Gold's gym near office",
+    "status": "completed",
+    "priority": "medium",
+    "category": "health",
+    "tags": ["fitness", "gym", "membership"],
+    "dueDate": "2025-01-15"
+  },
+  {
+    "title": "Read Clean Code book",
+    "description": "Finish remaining chapters",
+    "status": "in_progress",
+    "priority": "low",
+    "category": "learning",
+    "tags": ["book", "coding", "best-practices"],
+    "dueDate": "2025-03-01"
+  },
+  {
+    "title": "Setup SIP investment",
+    "description": "Rs 5000 monthly in mutual funds",
+    "status": "completed",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["investment", "sip", "mutual-funds"],
+    "dueDate": "2025-01-10"
+  },
+  {
+    "title": "Update LinkedIn profile",
+    "description": "Add recent projects and skills",
+    "status": "pending",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["career", "profile", "networking"],
+    "dueDate": "2025-02-05"
+  },
+  {
+    "title": "Setup CI/CD pipeline",
+    "description": "GitHub Actions for auto deployment",
+    "status": "pending",
+    "priority": "high",
+    "category": "work",
+    "tags": ["cicd", "github-actions", "automation"],
+    "dueDate": "2025-02-18"
+  },
+  {
+    "title": "Buy winter jacket",
+    "description": "Waterproof jacket for trip",
+    "status": "pending",
+    "priority": "medium",
+    "category": "shopping",
+    "tags": ["clothing", "winter", "travel"],
+    "dueDate": "2025-02-10"
+  },
+  {
+    "title": "Book eye checkup",
+    "description": "Prescription glasses update",
+    "status": "pending",
+    "priority": "medium",
+    "category": "health",
+    "tags": ["medical", "eyes", "checkup"],
+    "dueDate": "2025-02-08"
+  },
+  {
+    "title": "Complete AWS certification",
+    "description": "Solutions Architect Associate",
+    "status": "pending",
+    "priority": "high",
+    "category": "learning",
+    "tags": ["aws", "certification", "cloud"],
+    "dueDate": "2025-04-30"
+  },
+  {
+    "title": "Pay credit card bill",
+    "description": "HDFC card due amount",
+    "status": "pending",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["bills", "credit-card", "monthly"],
+    "dueDate": "2025-02-05"
+  },
+  {
+    "title": "Backup photos to cloud",
+    "description": "Upload to Google Photos",
+    "status": "in_progress",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["backup", "photos", "cloud"],
+    "dueDate": "2025-02-01"
+  },
+  {
+    "title": "Code review for team PR",
+    "description": "Review authentication module changes",
+    "status": "pending",
+    "priority": "high",
+    "category": "work",
+    "tags": ["code-review", "team", "pr"],
+    "dueDate": "2025-01-29"
+  },
+  {
+    "title": "Order home decor items",
+    "description": "Wall art and plants",
+    "status": "pending",
+    "priority": "low",
+    "category": "shopping",
+    "tags": ["home", "decor", "plants"],
+    "dueDate": "2025-02-28"
+  },
+  {
+    "title": "Start meditation practice",
+    "description": "10 mins daily using Headspace",
+    "status": "pending",
+    "priority": "medium",
+    "category": "health",
+    "tags": ["meditation", "mindfulness", "routine"],
+    "dueDate": "2025-02-01"
+  },
+  {
+    "title": "Build portfolio website",
+    "description": "Showcase projects and skills",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "learning",
+    "tags": ["portfolio", "website", "career"],
+    "dueDate": "2025-03-10"
+  },
+  {
+    "title": "File GST returns",
+    "description": "Quarterly filing for business",
+    "status": "pending",
+    "priority": "high",
+    "category": "finance",
+    "tags": ["tax", "gst", "quarterly"],
+    "dueDate": "2025-02-15"
+  },
+  {
+    "title": "Call old college friends",
+    "description": "Plan reunion meetup",
+    "status": "pending",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["friends", "reunion", "social"],
+    "dueDate": "2025-02-20"
+  },
+  {
+    "title": "Implement Redis caching",
+    "description": "Cache frequently accessed data",
+    "status": "pending",
+    "priority": "medium",
+    "category": "work",
+    "tags": ["redis", "caching", "performance"],
+    "dueDate": "2025-03-01"
+  },
+  {
+    "title": "Buy kitchen appliances",
+    "description": "Air fryer and mixer grinder",
+    "status": "pending",
+    "priority": "medium",
+    "category": "shopping",
+    "tags": ["kitchen", "appliances", "home"],
+    "dueDate": "2025-02-25"
+  },
+  {
+    "title": "Complete vaccination",
+    "description": "COVID booster dose",
+    "status": "completed",
+    "priority": "high",
+    "category": "health",
+    "tags": ["vaccination", "covid", "medical"],
+    "dueDate": "2025-01-12"
+  },
+  {
+    "title": "Learn GraphQL basics",
+    "description": "Queries, mutations, subscriptions",
+    "status": "pending",
+    "priority": "medium",
+    "category": "learning",
+    "tags": ["graphql", "api", "backend"],
+    "dueDate": "2025-03-20"
+  },
+  {
+    "title": "Track monthly expenses",
+    "description": "Use expense tracker app",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "finance",
+    "tags": ["expenses", "tracking", "budget"],
+    "dueDate": "2025-01-31"
+  },
+  {
+    "title": "Clean and organize wardrobe",
+    "description": "Donate old clothes",
+    "status": "pending",
+    "priority": "low",
+    "category": "personal",
+    "tags": ["cleaning", "organization", "declutter"],
+    "dueDate": "2025-02-15"
+  },
+  {
+    "title": "Prepare presentation for client",
+    "description": "Q4 progress and roadmap",
+    "status": "in_progress",
+    "priority": "high",
+    "category": "work",
+    "tags": ["presentation", "client", "meeting"],
+    "dueDate": "2025-01-30"
+  },
+  {
+    "title": "Buy headphones for work",
+    "description": "Noise cancelling wireless",
+    "status": "pending",
+    "priority": "medium",
+    "category": "shopping",
+    "tags": ["electronics", "headphones", "work"],
+    "dueDate": "2025-02-08"
+  }
+]
