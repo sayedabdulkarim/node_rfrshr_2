@@ -3,29 +3,29 @@
 ---
 ## ALL QUESTIONS AT A GLANCE
 
-BASIC (1-20)                    INTERMEDIATE (21-41)           ADVANCED (42-61)
+BASIC (1-21)                    INTERMEDIATE (22-42)           ADVANCED (43-62)
 ─────────────────────────────────────────────────────────────────────────────────────────
-1.  Optimise Express perf?      21. Streams in Node?           42. async/await vs Promise?
-2.  Pagination MongoDB?         22. Callback hell?             43. Error handling async?
-3.  JS vs NodeJS?               23. Timer module?              44. Promise.all/race/allSettled?
-4.  NodeJS single threaded?     24. bodyParser?                45. Input validation Joi?
-5.  What is module?             25. CORS in Node?              46. MongoDB indexes?
-6.  Create NodeJS app?          26. Authentication?            47. Aggregation pipeline?
-7.  What is middleware?         27. File upload packages?      48. Rate limiting?
-8.  Handle concurrency?         28. Mail sending package?      49. Security packages?
-9.  What is control flow?       29. Connect to database?       50. Prevent SQL inj & XSS?
-10. What is eventLoop?          30. Environment variables?     51. PM2 vs nodemon?
-11. Disadvantages NodeJS?       31. Password encryption?       52. Logging Winston/Morgan?
-12. SQL with NodeJS?            32. Folder structure?          53. Redis caching?
-13. REPL environment?           33. What is EJS?               54. Memory leaks?
-14. Inbuilt modules?            34. queryParams vs params?     55. MongoDB transactions?
-15. What is package.json?       35. Google authentication?     56. Soft delete?
-16. HelloWorld server?          36. What is WebSocket?         57. Test APIs Jest?
-17. Why ExpressJS?              37. Session management?        58. Unit vs Integration test?
-18. Promises in Node?           38. Create database model?     59. Optimize MongoDB queries?
-19. Event-driven programming?   39. Mongoose vs MongoDB?       60. Docker basics?
-20. What is buffer?             40. What is cluster?           61. Worker threads & Pool?
-                                41. Search functionality?
+1.  Optimise Express perf?      22. Streams in Node?           43. async/await vs Promise?
+2.  Pagination MongoDB?         23. Callback hell?             44. Error handling async?
+3.  JS vs NodeJS?               24. Timer module?              45. Promise.all/race/allSettled?
+4.  NodeJS single threaded?     25. bodyParser?                46. Input validation Joi?
+5.  What is module?             26. CORS in Node?              47. MongoDB indexes?
+6.  Create NodeJS app?          27. Authentication?            48. Aggregation pipeline?
+7.  What is middleware?         28. File upload packages?      49. Rate limiting?
+8.  Handle concurrency?         29. Mail sending package?      50. Security packages?
+9.  What is control flow?       30. Connect to database?       51. Prevent SQL inj & XSS?
+10. What is eventLoop?          31. Environment variables?     52. PM2 vs nodemon?
+11. Disadvantages NodeJS?       32. Password encryption?       53. Logging Winston/Morgan?
+12. SQL with NodeJS?            33. Folder structure?          54. Redis caching?
+13. REPL environment?           34. What is EJS?               55. Memory leaks?
+14. Inbuilt modules?            35. queryParams vs params?     56. MongoDB transactions?
+15. What is package.json?       36. Google authentication?     57. Soft delete?
+16. HelloWorld server?          37. What is WebSocket?         58. Test APIs Jest?
+17. Why ExpressJS?              38. Session management?        59. Unit vs Integration test?
+18. Promises in Node?           39. Create database model?     60. Optimize MongoDB queries?
+19. Event-driven programming?   40. Mongoose vs MongoDB?       61. Docker basics?
+20. What is buffer?             41. What is cluster?           62. Worker threads & Pool?
+21. Access vs Refresh Token?    42. Search functionality?
 
 ---
 
@@ -79,37 +79,41 @@ BASIC (1-20)                    INTERMEDIATE (21-41)           ADVANCED (42-61)
 
 20. What is buffer in nodeJS?
 
-21. What are streams in nodeJs?
+21. What is the difference between Access Token and Refresh Token?
+    Answer:
+    Access token is short-lived (15min-1hr) for API access. Refresh token is long-lived (7-30 days) to get new access token without re-login. This improves security - if access token is stolen, it expires quickly.
 
-22. What is callback hell in nodejs / js?
+22. What are streams in nodeJs?
 
-23. What is timer module in nodeJS?
+23. What is callback hell in nodejs / js?
 
-24. What is bodyParser in Nodejs?
+24. What is timer module in nodeJS?
 
-25. What is CORS in nodeJS?
+25. What is bodyParser in Nodejs?
 
-26. What is authentication in Nodejs?
+26. What is CORS in nodeJS?
 
-27. What are the packages used for file upload in nodeJS?
+27. What is authentication in Nodejs?
 
-28. Which package is used for sending mail from nodeJs?
+28. What are the packages used for file upload in nodeJS?
 
-29. How are we connecting our nodejs to database?
+29. Which package is used for sending mail from nodeJs?
 
-30. How to handle environment variables in nodeJs?
+30. How are we connecting our nodejs to database?
 
-31. Which package is used for password encryption (bcrypt)?
+31. How to handle environment variables in nodeJs?
 
-32. What should be the folder structure of our nodeJS project?
+32. Which package is used for password encryption (bcrypt)?
 
-33. What is EJS?
+33. What should be the folder structure of our nodeJS project?
 
-34. Difference between queryParams and request.params?
+34. What is EJS?
 
-35. How to integrate google authentication?
+35. Difference between queryParams and request.params?
 
-36. What is webSocket?
+36. How to integrate google authentication?
+
+37. What is webSocket?
 
     Answer:
     WebSocket kya hai?
@@ -134,58 +138,58 @@ BASIC (1-20)                    INTERMEDIATE (21-41)           ADVANCED (42-61)
 
     Real-time chahiye = WebSocket use karo!
 
-37. How to manage session in nodeJS?
+38. How to manage session in nodeJS?
 
-38. How to create database model?
+39. How to create database model?
 
-39. Why we use mongoose, not mongoDb?
+40. Why we use mongoose, not mongoDb?
     Ans: Like Prisma is ORM (Object-Relational Mapper) for SQL, Mongoose is ODM (Object-Document Mapper) for MongoDB
 
-40. What is cluster in nodeJs?
+41. What is cluster in nodeJs?
 
-41. How to implement search functionality in NodeJS and mongoDB?
+42. How to implement search functionality in NodeJS and mongoDB?
 
 ===
 
-42. What is async/await? How is it different from Promises?
+43. What is async/await? How is it different from Promises?
 
-43. How to handle errors in async/await? (try/catch pattern)
+44. How to handle errors in async/await? (try/catch pattern)
 
-44. Explain Promise.all(), Promise.race(), Promise.allSettled()
+45. Explain Promise.all(), Promise.race(), Promise.allSettled()
 
-45. What is input validation? How to use Joi or express-validator?
+46. What is input validation? How to use Joi or express-validator?
 
-46. What are MongoDB indexes? Why are they important for performance?
+47. What are MongoDB indexes? Why are they important for performance?
 
-47. Explain MongoDB aggregation pipeline with example
+48. Explain MongoDB aggregation pipeline with example
 
-48. What is rate limiting? How to implement it in Express?
+49. What is rate limiting? How to implement it in Express?
 
-49. What security packages should be used? (Helmet, express-validator, etc.)
+50. What security packages should be used? (Helmet, express-validator, etc.)
 
-50. How to prevent SQL injection and XSS attacks in Node.js?
+51. How to prevent SQL injection and XSS attacks in Node.js?
 
-51. What is the difference between PM2 and nodemon?
+52. What is the difference between PM2 and nodemon?
 
-52. How to implement logging in production? (Winston, Morgan)
+53. How to implement logging in production? (Winston, Morgan)
 
-53. What is Redis? How to use it for caching in Node.js?
+54. What is Redis? How to use it for caching in Node.js?
 
-54. How to handle memory leaks in Node.js?
+55. How to handle memory leaks in Node.js?
 
-55. Explain MongoDB transactions with example
+56. Explain MongoDB transactions with example
 
-56. What is soft delete? How to implement it?
+57. What is soft delete? How to implement it?
 
-57. How to test APIs? (Jest, Supertest)
+58. How to test APIs? (Jest, Supertest)
 
-58. What is the difference between unit testing and integration testing?
+59. What is the difference between unit testing and integration testing?
 
-59. How to optimize MongoDB queries? (indexing, lean(), select())
+60. How to optimize MongoDB queries? (indexing, lean(), select())
 
-60. What is Docker? Basic concepts for Node.js deployment
+61. What is Docker? Basic concepts for Node.js deployment
 
-61. If 100 users simultaneously try to resize images, should we use worker threads?
+62. If 100 users simultaneously try to resize images, should we use worker threads?
     What is Worker Pool and why is it needed?
 
     Answer:
