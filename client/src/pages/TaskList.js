@@ -11,12 +11,22 @@ const TaskList = () => {
     priority: '',
     category: ''
   });
+  const [sort, setSort] = useState({
+    sortBy: 'createdAt',
+    sortOrder: 'desc'
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    totalItems: 0,
+    limit: 10
+  });
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  const fetchTasks = async (searchTerm = '', filterOptions = filters) => {
+  const fetchTasks = async (searchTerm = '', filterOptions = filters, sortOptions = sort, page = 1, limit = 10) => {
     try {
       setLoading(true);
 
@@ -26,10 +36,15 @@ const TaskList = () => {
       if (filterOptions.status) params.append('status', filterOptions.status);
       if (filterOptions.priority) params.append('priority', filterOptions.priority);
       if (filterOptions.category) params.append('category', filterOptions.category);
+      params.append('sortBy', sortOptions.sortBy);
+      params.append('sortOrder', sortOptions.sortOrder);
+      params.append('page', page);
+      params.append('limit', limit);
 
-      const queryString = params.toString() ? `?${params.toString()}` : '';
+      const queryString = `?${params.toString()}`;
       const response = await api.get(`/tasks${queryString}`);
       setTasks(response.data.data);
+      setPagination(response.data.pagination);
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -40,19 +55,34 @@ const TaskList = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchTasks(search, filters);
+    fetchTasks(search, filters, sort);
   };
 
   const handleFilterChange = (filterName, value) => {
     const newFilters = { ...filters, [filterName]: value };
     setFilters(newFilters);
-    fetchTasks(search, newFilters);
+    fetchTasks(search, newFilters, sort);
+  };
+
+  const handleSortChange = (field, value) => {
+    const newSort = { ...sort, [field]: value };
+    setSort(newSort);
+    fetchTasks(search, filters, newSort);
   };
 
   const clearAll = () => {
     setSearch('');
     setFilters({ status: '', priority: '', category: '' });
-    fetchTasks('', { status: '', priority: '', category: '' });
+    setSort({ sortBy: 'createdAt', sortOrder: 'desc' });
+    fetchTasks('', { status: '', priority: '', category: '' }, { sortBy: 'createdAt', sortOrder: 'desc' }, 1, 10);
+  };
+
+  const handlePageChange = (newPage) => {
+    fetchTasks(search, filters, sort, newPage, pagination.limit);
+  };
+
+  const handleLimitChange = (newLimit) => {
+    fetchTasks(search, filters, sort, 1, newLimit);
   };
 
   const getPriorityColor = (priority) => {
@@ -135,6 +165,27 @@ const TaskList = () => {
             Clear All
           </button>
         )}
+
+        {/* Sort Controls */}
+        <div style={styles.sortContainer}>
+          <span style={styles.sortLabel}>Sort:</span>
+          <select
+            value={sort.sortBy}
+            onChange={(e) => handleSortChange('sortBy', e.target.value)}
+            style={styles.filterSelect}
+          >
+            <option value="createdAt">Created Date</option>
+            <option value="dueDate">Due Date</option>
+            <option value="title">Title</option>
+            <option value="priority">Priority</option>
+          </select>
+          <button
+            onClick={() => handleSortChange('sortOrder', sort.sortOrder === 'asc' ? 'desc' : 'asc')}
+            style={styles.sortOrderBtn}
+          >
+            {sort.sortOrder === 'asc' ? '↑ Asc' : '↓ Desc'}
+          </button>
+        </div>
       </div>
 
       <div style={styles.taskGrid}>
@@ -175,6 +226,66 @@ const TaskList = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Pagination */}
+      <div style={styles.paginationContainer}>
+        <div style={styles.paginationInfo}>
+          Showing {tasks.length} of {pagination.totalItems} tasks
+        </div>
+
+        <div style={styles.paginationControls}>
+          <button
+            onClick={() => handlePageChange(pagination.currentPage - 1)}
+            disabled={!pagination.hasPrevPage}
+            style={{
+              ...styles.pageBtn,
+              opacity: pagination.hasPrevPage ? 1 : 0.5
+            }}
+          >
+            ← Prev
+          </button>
+
+          {/* Page Numbers */}
+          {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => handlePageChange(pageNum)}
+              style={{
+                ...styles.pageBtn,
+                backgroundColor: pageNum === pagination.currentPage ? '#3b82f6' : '#fff',
+                color: pageNum === pagination.currentPage ? '#fff' : '#374151'
+              }}
+            >
+              {pageNum}
+            </button>
+          ))}
+
+          <button
+            onClick={() => handlePageChange(pagination.currentPage + 1)}
+            disabled={!pagination.hasNextPage}
+            style={{
+              ...styles.pageBtn,
+              opacity: pagination.hasNextPage ? 1 : 0.5
+            }}
+          >
+            Next →
+          </button>
+        </div>
+
+        <div style={styles.limitContainer}>
+          <span>Per page:</span>
+          <select
+            value={pagination.limit}
+            onChange={(e) => handleLimitChange(parseInt(e.target.value))}
+            style={styles.limitSelect}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
       </div>
     </div>
   );
@@ -236,6 +347,26 @@ const styles = {
     backgroundColor: '#fff',
     cursor: 'pointer',
     minWidth: '150px'
+  },
+  sortContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginLeft: 'auto'
+  },
+  sortLabel: {
+    fontSize: '14px',
+    color: '#6b7280',
+    fontWeight: '500'
+  },
+  sortOrderBtn: {
+    padding: '10px 16px',
+    fontSize: '14px',
+    border: '1px solid #d1d5db',
+    borderRadius: '8px',
+    backgroundColor: '#fff',
+    cursor: 'pointer',
+    fontWeight: '500'
   },
   loading: {
     textAlign: 'center',
@@ -313,6 +444,45 @@ const styles = {
   dueDate: {
     fontSize: '12px',
     color: '#9ca3af'
+  },
+  paginationContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: '24px',
+    padding: '16px',
+    backgroundColor: '#fff',
+    borderRadius: '8px',
+    border: '1px solid #e5e7eb'
+  },
+  paginationInfo: {
+    fontSize: '14px',
+    color: '#6b7280'
+  },
+  paginationControls: {
+    display: 'flex',
+    gap: '4px'
+  },
+  pageBtn: {
+    padding: '8px 12px',
+    border: '1px solid #d1d5db',
+    borderRadius: '6px',
+    backgroundColor: '#fff',
+    cursor: 'pointer',
+    fontSize: '14px'
+  },
+  limitContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    fontSize: '14px',
+    color: '#6b7280'
+  },
+  limitSelect: {
+    padding: '8px 12px',
+    border: '1px solid #d1d5db',
+    borderRadius: '6px',
+    fontSize: '14px'
   }
 };
 
