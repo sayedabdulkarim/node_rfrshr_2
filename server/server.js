@@ -12,6 +12,7 @@ const fileRoutes = require('./routes/fileRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const taskRoutes = require('./demo/todoSearch/taskRoutes');
+const taskRoutesNoAgg = require('./demo/todoSearch/taskRoutesWithoutAggregate');
 
 const app = express();
 
