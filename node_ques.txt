@@ -125,8 +125,23 @@ BASIC (1-21)                    INTERMEDIATE (22-42)           ADVANCED (43-62)
 33. What should be the folder structure of our nodeJS project?
 
 34. What is EJS?
+    Answer:
+    EJS = Template Engine (HTML me JavaScript inject karna)
+    Similar: Handlebars, Pug, Mustache - sab template engines hain, bas syntax alag.
+
+    MERN stack me React use karte, toh EJS ki zarurat nahi (old-school SSR method hai).
 
 35. Difference between queryParams and request.params?
+    Answer:
+    URL: http://localhost:5001/api/users/123?search=john&page=2
+
+    | Type        | Kahan se          | Example                  | Access              |
+    |-------------|-------------------|--------------------------|---------------------|
+    | req.params  | URL path (:id)    | /users/:id → /users/123  | req.params.id → 123 |
+    | req.query   | URL me ? ke baad  | ?search=john             | req.query.search    |
+    | req.body    | POST/PUT body     | { "name": "John" }       | req.body.name       |
+
+    Note: queryParams = req.query (same cheez, naam alag)
 
 36. How to integrate google authentication?
     Answer:
