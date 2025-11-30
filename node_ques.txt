@@ -76,6 +76,23 @@ BASIC (1-21)                    INTERMEDIATE (22-42)           ADVANCED (43-62)
 18. What are promises in nodeJs?
 
 19. What is event-driven programming in NodeJS?
+    Answer:
+    Event-driven programming = "Jab ye ho, tab wo kar"
+
+    Code khud se nahi chalta, kisi event (action) ke hone ka wait karta hai, phir chalta hai.
+
+    Examples:
+    - Jab request aaye → response de
+    - Jab button click ho → form submit kar
+    - Jab message aaye → broadcast kar
+    - Jab file read complete ho → data process kar
+
+    Node.js pura event-driven hai - Express routes, Socket.io, file operations sab events pe kaam karte hain.
+
+    Code Example:
+    button.on('click', () => { });      // Click event
+    socket.on('message', () => { });    // Message event
+    app.get('/api', (req, res) => { }); // Request event
 
 20. What is buffer in nodeJS?
 
