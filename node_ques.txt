@@ -129,6 +129,26 @@ BASIC (1-21)                    INTERMEDIATE (22-42)           ADVANCED (43-62)
 35. Difference between queryParams and request.params?
 
 36. How to integrate google authentication?
+    Answer:
+    3 Steps:
+
+    Step 1: Google Console Setup
+    - Google Cloud Console → New Project
+    - APIs & Services → Credentials → OAuth 2.0 Client ID
+    - Client ID + Client Secret milega
+    - Redirect URI: http://localhost:5001/api/auth/google/callback
+
+    Step 2: Backend (Node.js)
+    - npm install passport passport-google-oauth20
+    - GoogleStrategy setup with clientID, clientSecret
+    - Routes: /api/auth/google (login) + /api/auth/google/callback (redirect)
+    - Callback me user create/find → JWT generate → frontend redirect
+
+    Step 3: Frontend (React)
+    - Button: <a href="http://localhost:5001/api/auth/google">Login with Google</a>
+    - Token receive from URL params → localStorage me store
+
+    Flow: Click button → Google login → Callback → JWT → Frontend → Done!
 
 37. What is webSocket?
 
