@@ -8,30 +8,30 @@ Watch
 ---
 ## ALL QUESTIONS AT A GLANCE
 
-BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
+BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
 ─────────────────────────────────────────────────────────────────────────────────────────
-1.  Optimise Express perf?      23. Streams in Node?           44. async/await vs Promise?
-2.  Pagination MongoDB?         24. Callback hell?             45. Error handling async?
-3.  JS vs NodeJS?               25. Timer module?              46. Promise.all/race/allSettled?
-4.  NodeJS single threaded?     26. bodyParser?                47. Input validation Joi?
-5.  What is module?             27. CORS in Node?              48. MongoDB indexes?
-6.  Create NodeJS app?          28. Authentication?            49. Aggregation pipeline?
-7.  What is middleware?         29. File upload packages?      50. Rate limiting?
-8.  Handle concurrency?         30. Mail sending package?      51. Security packages?
-9.  What is control flow?       31. Connect to database?       52. Prevent SQL inj & XSS?
-10. What is eventLoop?          32. Environment variables?     53. PM2 vs nodemon?
-11. Disadvantages NodeJS?       33. Password encryption?       54. Logging Winston/Morgan?
-12. SQL with NodeJS?            34. Folder structure?          55. Redis caching?
-13. REPL environment?           35. What is EJS?               56. Memory leaks?
-14. Inbuilt modules?            36. queryParams vs params?     57. MongoDB transactions?
-15. What is package.json?       37. Google authentication?     58. Soft delete?
-16. Check package safety?       38. What is WebSocket?         59. Test APIs Jest?
-17. HelloWorld server?          39. Session management?        60. Unit vs Integration test?
-18. Why ExpressJS?              40. Create database model?     61. Optimize MongoDB queries?
-19. Promises in Node?           41. Mongoose vs MongoDB?       62. Docker basics?
-20. Event-driven programming?   42. What is cluster?           63. Worker threads & Pool?
+1.  Optimise Express perf?      23. Streams in Node?           45. async/await vs Promise?
+2.  Pagination MongoDB?         24. Callback hell?             46. Error handling async?
+3.  JS vs NodeJS?               25. Timer module?              47. Promise.all/race/allSettled?
+4.  NodeJS single threaded?     26. bodyParser?                48. Input validation Joi?
+5.  What is module?             27. CORS in Node?              49. MongoDB indexes?
+6.  Create NodeJS app?          28. Authentication?            50. Aggregation pipeline?
+7.  What is middleware?         29. File upload packages?      51. Rate limiting?
+8.  Handle concurrency?         30. Mail sending package?      52. Security packages?
+9.  What is control flow?       31. Connect to database?       53. Prevent SQL inj & XSS?
+10. What is eventLoop?          32. Environment variables?     54. PM2 vs nodemon?
+11. Disadvantages NodeJS?       33. Password encryption?       55. Logging Winston/Morgan?
+12. SQL with NodeJS?            34. Folder structure?          56. Redis caching?
+13. REPL environment?           35. What is EJS?               57. Memory leaks?
+14. Inbuilt modules?            36. queryParams vs params?     58. MongoDB transactions?
+15. What is package.json?       37. Google authentication?     59. Soft delete?
+16. Check package safety?       38. What is WebSocket?         60. Test APIs Jest?
+17. HelloWorld server?          39. Session management?        61. Unit vs Integration test?
+18. Why ExpressJS?              40. Create database model?     62. Optimize MongoDB queries?
+19. Promises in Node?           41. Mongoose vs MongoDB?       63. Docker basics?
+20. Event-driven programming?   42. What is cluster?           64. Worker threads & Pool?
 21. What is buffer?             43. Search functionality?
-22. Access vs Refresh Token?
+22. Access vs Refresh Token?    44. Middleware req & res?
 
 ---
 
@@ -225,21 +225,60 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
 
 43. How to implement search functionality in NodeJS and mongoDB?
 
+44. Can middleware work on both request and response?
+    Answer:
+    YES! Middleware ko req, res, aur next teeno milte hain.
+
+    3 Types of Usage:
+
+    1. Request pe kaam (Before route handler):
+       const authMiddleware = (req, res, next) => {
+         if (!req.headers.token) {
+           return res.status(401).json({ error: 'No token!' });
+         }
+         next();
+       };
+
+    2. Response modify karna:
+       app.use((req, res, next) => {
+         res.setHeader('X-Powered-By', 'MyApp');
+         next();
+       });
+
+    3. Response intercept (After route handler):
+       app.use((req, res, next) => {
+         const start = Date.now();
+         res.on('finish', () => {
+           console.log(`${req.method} ${req.url} - ${Date.now() - start}ms`);
+         });
+         next();
+       });
+
+    Examples:
+    | Middleware | Works On                        |
+    |------------|--------------------------------|
+    | auth.js    | Request (token check)          |
+    | cors       | Both (headers add karta)       |
+    | morgan     | Both (request + response time) |
+    | Error handler | Response (error format)     |
+
+    Simple: Middleware = Gatekeeper for both incoming & outgoing traffic!
+
 ===
 
-44. What is async/await? How is it different from Promises?
+45. What is async/await? How is it different from Promises?
 
-45. How to handle errors in async/await? (try/catch pattern)
+46. How to handle errors in async/await? (try/catch pattern)
 
-46. Explain Promise.all(), Promise.race(), Promise.allSettled()
+47. Explain Promise.all(), Promise.race(), Promise.allSettled()
 
-47. What is input validation? How to use Joi or express-validator?
+48. What is input validation? How to use Joi or express-validator?
 
-48. What are MongoDB indexes? Why are they important for performance?
+49. What are MongoDB indexes? Why are they important for performance?
 
-49. Explain MongoDB aggregation pipeline with example
+50. Explain MongoDB aggregation pipeline with example
 
-50. What is rate limiting? How to implement it in Express?
+51. What is rate limiting? How to implement it in Express?
     Answer:
     Rate Limiting = Ek user kitni requests maar sakta hai, limit karna
 
@@ -259,7 +298,7 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
 
     Example: Login 5 attempts/15min, OTP 3/hour, API 100/day
 
-51. What security packages should be used? (Helmet, express-validator, etc.)
+52. What security packages should be used? (Helmet, express-validator, etc.)
     Answer:
     1. helmet        → HTTP headers secure karta
     2. cors          → Cross-origin requests control
@@ -277,9 +316,9 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
     app.use(hpp());
     app.use(mongoSanitize());
 
-52. How to prevent SQL injection and XSS attacks in Node.js?
+53. How to prevent SQL injection and XSS attacks in Node.js?
 
-53. What is the difference between PM2 and nodemon?
+54. What is the difference between PM2 and nodemon?
     Answer:
     Nodemon = Development (code change → auto restart)
     PM2     = Production (crash → auto restart + monitoring + cluster mode)
@@ -287,7 +326,7 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
     Development → nodemon server.js
     Production  → pm2 start server.js
 
-54. How to implement logging in production? (Winston, Morgan)
+55. How to implement logging in production? (Winston, Morgan)
     Answer:
     Morgan  = Request logs (KON aaya, KYA maanga) - automatic
              Output: GET /api/tasks 200 15ms
@@ -298,9 +337,9 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
 
     Production me dono use karo!
 
-55. What is Redis? How to use it for caching in Node.js?
+56. What is Redis? How to use it for caching in Node.js?
 
-56. How to handle memory leaks in Node.js?
+57. How to handle memory leaks in Node.js?
     Answer:
     Memory Leak = App memory use karta, release nahi karta → Server slow/crash
 
@@ -316,7 +355,7 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
 
     Detect: node --inspect server.js (Chrome DevTools)
 
-57. Explain MongoDB transactions with example
+58. Explain MongoDB transactions with example
     Answer:
     Transaction = Multiple operations ek saath success ya fail
                   Beech me fail → Sab rollback (undo)
@@ -335,7 +374,7 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
     Simple: "Ya toh sab hoga, ya kuch nahi hoga"
     Use: Money transfer, Order + Inventory update
 
-58. What is soft delete? How to implement it?
+59. What is soft delete? How to implement it?
     Answer:
     Hard Delete = Permanently delete (gone forever)
     Soft Delete = Delete nahi, bas "deleted" mark karo (recover ho sakta)
@@ -353,7 +392,7 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
 
     Simple: Recycle bin concept - galti se delete hua toh recover ho sake
 
-59. How to test APIs? (Jest, Supertest)
+60. How to test APIs? (Jest, Supertest)
     Answer:
     Frontend → Jest + RTL (React Testing Library)
     Backend  → Jest + Supertest
@@ -370,13 +409,13 @@ BASIC (1-22)                    INTERMEDIATE (23-43)           ADVANCED (44-63)
     Jest = Test runner (same for both)
     Supertest = API endpoints test karne ke liye
 
-60. What is the difference between unit testing and integration testing?
+61. What is the difference between unit testing and integration testing?
 
-61. How to optimize MongoDB queries? (indexing, lean(), select())
+62. How to optimize MongoDB queries? (indexing, lean(), select())
 
-62. What is Docker? Basic concepts for Node.js deployment
+63. What is Docker? Basic concepts for Node.js deployment
 
-63. If 100 users simultaneously try to resize images, should we use worker threads?
+64. If 100 users simultaneously try to resize images, should we use worker threads?
     What is Worker Pool and why is it needed?
 
     Answer:
