@@ -216,24 +216,135 @@ BASIC (1-21)                    INTERMEDIATE (22-42)           ADVANCED (43-62)
 48. Explain MongoDB aggregation pipeline with example
 
 49. What is rate limiting? How to implement it in Express?
+    Answer:
+    Rate Limiting = Ek user kitni requests maar sakta hai, limit karna
+
+    Problem: Bina limit → 1000 req/sec → Server crash / Brute force attack
+    Solution: 100 req/min allowed, 101st pe → "Too many requests, ruk ja"
+
+    Implementation:
+    npm install express-rate-limit
+
+    const rateLimit = require('express-rate-limit');
+    const limiter = rateLimit({
+      windowMs: 1 * 60 * 1000,  // 1 minute
+      max: 100,                  // 100 requests allowed
+      message: 'Too many requests, wait karo!'
+    });
+    app.use(limiter);
+
+    Example: Login 5 attempts/15min, OTP 3/hour, API 100/day
 
 50. What security packages should be used? (Helmet, express-validator, etc.)
+    Answer:
+    1. helmet        → HTTP headers secure karta
+    2. cors          → Cross-origin requests control
+    3. express-rate-limit → Request limit
+    4. express-validator / Joi → Input validation
+    5. bcrypt        → Password hashing
+    6. xss-clean     → XSS attack prevent
+    7. hpp           → HTTP Parameter Pollution prevent
+    8. mongo-sanitize → NoSQL injection prevent
+
+    Usage:
+    app.use(helmet());
+    app.use(cors());
+    app.use(xss());
+    app.use(hpp());
+    app.use(mongoSanitize());
 
 51. How to prevent SQL injection and XSS attacks in Node.js?
 
 52. What is the difference between PM2 and nodemon?
+    Answer:
+    Nodemon = Development (code change → auto restart)
+    PM2     = Production (crash → auto restart + monitoring + cluster mode)
+
+    Development → nodemon server.js
+    Production  → pm2 start server.js
 
 53. How to implement logging in production? (Winston, Morgan)
+    Answer:
+    Morgan  = Request logs (KON aaya, KYA maanga) - automatic
+             Output: GET /api/tasks 200 15ms
+
+    Winston = App logs (andar KYA hua) - manual likhna padta
+             logger.info('DB connected')
+             logger.error('Payment failed')
+
+    Production me dono use karo!
 
 54. What is Redis? How to use it for caching in Node.js?
 
 55. How to handle memory leaks in Node.js?
+    Answer:
+    Memory Leak = App memory use karta, release nahi karta → Server slow/crash
+
+    Common Causes:
+    - Global variables (garbage collect nahi hote)
+    - Event listeners (remove nahi kiye)
+    - Timers (clearInterval nahi kiya)
+
+    Fix:
+    - Event listener → socket.off() karo
+    - Timer → clearInterval(timer) karo
+    - Arrays → empty karo jab zarurat na ho
+
+    Detect: node --inspect server.js (Chrome DevTools)
 
 56. Explain MongoDB transactions with example
+    Answer:
+    Transaction = Multiple operations ek saath success ya fail
+                  Beech me fail → Sab rollback (undo)
+
+    Example - Money Transfer:
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+      await Account.updateOne({ user: 'A' }, { $inc: { balance: -1000 } }, { session });
+      await Account.updateOne({ user: 'B' }, { $inc: { balance: +1000 } }, { session });
+      await session.commitTransaction();   // Success → Save
+    } catch (error) {
+      await session.abortTransaction();    // Fail → Rollback
+    }
+
+    Simple: "Ya toh sab hoga, ya kuch nahi hoga"
+    Use: Money transfer, Order + Inventory update
 
 57. What is soft delete? How to implement it?
+    Answer:
+    Hard Delete = Permanently delete (gone forever)
+    Soft Delete = Delete nahi, bas "deleted" mark karo (recover ho sakta)
+
+    Implementation:
+    // Schema me add karo
+    isDeleted: { type: Boolean, default: false }
+    deletedAt: { type: Date, default: null }
+
+    // Soft delete
+    await User.updateOne({ _id: id }, { isDeleted: true, deletedAt: new Date() });
+
+    // Find me exclude karo
+    await User.find({ isDeleted: false });
+
+    Simple: Recycle bin concept - galti se delete hua toh recover ho sake
 
 58. How to test APIs? (Jest, Supertest)
+    Answer:
+    Frontend → Jest + RTL (React Testing Library)
+    Backend  → Jest + Supertest
+
+    Example:
+    const request = require('supertest');
+    const app = require('./app');
+
+    it('should return users', async () => {
+      const res = await request(app).get('/api/users');
+      expect(res.status).toBe(200);
+    });
+
+    Jest = Test runner (same for both)
+    Supertest = API endpoints test karne ke liye
 
 59. What is the difference between unit testing and integration testing?
 
