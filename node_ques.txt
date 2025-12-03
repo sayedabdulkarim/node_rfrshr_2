@@ -118,6 +118,10 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     socket.on('message', () => { });    // Message event
     app.get('/api', (req, res) => { }); // Request event
 
+    Node.js uses event-driven architecture where operations don't block the main thread. When an async operation like database query
+    starts, Node registers a callback and moves on. When operation completes, an event fires and callback executes. This is managed by
+    the Event Loop, making Node highly efficient for I/O-heavy applications.
+
 21. What is buffer in nodeJS?
 
 22. What is the difference between Access Token and Refresh Token?
