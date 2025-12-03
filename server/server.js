@@ -131,6 +131,25 @@ app.use((err, req, res, next) => {
   });
 });
 
+// ============ PROCESS LEVEL ERROR HANDLERS ============
+
+// Unhandled Promise Rejection
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('🔥 Unhandled Rejection at:', promise);
+  console.error('Reason:', reason);
+});
+
+// Uncaught Exception
+process.on('uncaughtException', (error) => {
+  console.error('💀 Uncaught Exception:', error);
+  process.exit(1);
+});
+
+// Warnings
+process.on('warning', (warning) => {
+  console.warn('⚠️ Warning:', warning.name, warning.message);
+});
+
 // ============ START SERVER ============
 
 const PORT = process.env.PORT || 5000;
