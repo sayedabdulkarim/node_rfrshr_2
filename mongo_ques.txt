@@ -439,7 +439,36 @@ const totalPages = Math.ceil(total / limit)
 
 ## 32. What is the use of $set operator?
 
+Specific fields update karta hai, baaki untouched.
+
+```javascript
+// Sirf age update, name/email same rahega
+await User.updateOne(
+  { name: "Rahul" },
+  { $set: { age: 26 } }
+)
+```
+
+| With $set | Without $set |
+|-----------|--------------|
+| Sirf specified field update | Pura document replace |
+
 ## 33. What is the use of $inc operator?
+
+Value increment/decrement karta hai.
+
+```javascript
+// views +1
+await Post.updateOne({ _id: postId }, { $inc: { views: 1 } })
+
+// balance -100 (decrement)
+await User.updateOne({ _id: userId }, { $inc: { balance: -100 } })
+```
+
+| Value | Matlab |
+|-------|--------|
+| `$inc: { views: 1 }` | +1 |
+| `$inc: { views: -1 }` | -1 |
 
 ---
 
