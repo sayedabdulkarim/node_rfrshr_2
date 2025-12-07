@@ -413,6 +413,26 @@ const todos = await Todo.find().sort({ completed: 1, createdAt: -1 })
 
 ## 29. What is the use of .countDocuments()?
 
+Total documents count karta hai.
+
+```javascript
+// Saare users count karo
+const total = await User.countDocuments()  // 150
+
+// With filter - active users count
+const activeUsers = await User.countDocuments({ isActive: true })  // 89
+
+// User ke todos count
+const todoCount = await Todo.countDocuments({ user: req.user._id })
+const completedCount = await Todo.countDocuments({ user: req.user._id, completed: true })
+```
+
+**Pagination mein use:**
+```javascript
+const total = await Todo.countDocuments({ user: req.user._id })
+const totalPages = Math.ceil(total / limit)
+```
+
 ## 30. How to check if MongoDB is running?
 
 ## 31. What is the difference between updateOne() and updateMany()?
