@@ -389,6 +389,28 @@ const users = await User.find()
 
 ## 28. How to sort documents in MongoDB?
 
+```javascript
+// Ascending (A-Z, 1-100)
+const users = await User.find().sort({ name: 1 })
+
+// Descending (Z-A, 100-1)
+const users = await User.find().sort({ name: -1 })
+
+// Multiple fields
+const todos = await Todo.find().sort({ completed: 1, createdAt: -1 })
+```
+
+| Value | Matlab |
+|-------|--------|
+| `1` | Ascending (chhota → bada) |
+| `-1` | Descending (bada → chhota) |
+
+**Shorthand syntax:**
+```javascript
+.sort('-createdAt')  // Same as { createdAt: -1 }
+.sort('name')        // Same as { name: 1 }
+```
+
 ## 29. What is the use of .countDocuments()?
 
 ## 30. How to check if MongoDB is running?
