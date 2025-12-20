@@ -4,26 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Full-stack MERN Todo application with JWT authentication. The project consists of two separate applications:
-- **Server**: Node.js/Express backend with MongoDB (port 5001)
-- **Client**: React frontend with Context API for state management (port 3000)
+Full-stack MERN Todo application with JWT authentication and role-based access control. Also serves as a learning sandbox for Node.js patterns (Buffer vs Stream, Worker Threads, MongoDB aggregations).
+
+- **Server**: Express 5 backend with MongoDB (port 5001)
+- **Client**: React frontend with Context API (port 3000)
 
 ## Development Commands
 
-### Server (from `/server` directory)
 ```bash
-npm start              # Start server with nodemon (auto-reload)
+# Server (from /server directory)
+npm start                    # Start with nodemon (auto-reload)
+
+# Client (from /client directory)
+npm start                    # React dev server
+npm test                     # Jest/React Testing Library
+npm test -- --watchAll=false # Run tests once (CI mode)
+npm run build                # Production build
 ```
 
-### Client (from `/client` directory)
-```bash
-npm start              # Start React development server
-npm test               # Run tests with Jest/React Testing Library
-npm run build          # Build for production
-```
+## Environment Setup
 
-### Environment Setup
-Server requires `.env` file in `/server` directory:
+Server requires `/server/.env`:
 ```
 MONGODB_URI=mongodb://localhost:27017/your_db
 JWT_SECRET=your_secret_key
@@ -94,23 +95,27 @@ Express Route → Auth Middleware → Controller → Mongoose Model → MongoDB
 - `DELETE /:id` - Delete todo
 - `PUT /:id/toggle` - Toggle completion status
 
+### Additional Demo Routes
+- `/api/files` - Buffer vs Stream file handling demos
+- `/api/profile` - Profile picture upload (multer + sharp)
+- `/api/orders` - MongoDB aggregation pipeline examples
+- `/api/tasks` - Search, filter, sort, pagination patterns
+
 ## Key Patterns
 
 ### JWT Token Flow
-- Tokens stored in localStorage under `user` key
-- Format: `{ id, email, name, token }`
-- Every API request includes `Authorization: Bearer <token>` header
-- Backend middleware extracts user from token and attaches to `req.user`
-- User IDs used for data isolation (users only see their own todos)
+- Tokens stored in localStorage under `user` key as `{ id, email, name, roles, token }`
+- Request interceptor in `api.js` attaches `Authorization: Bearer <token>` header
+- `protect` middleware verifies token, attaches user to `req.user`
+- User IDs enforce data isolation (users only see their own todos)
 
 ### CORS Configuration
 Server allows `http://localhost:3000` and `http://127.0.0.1:3000` origins with credentials. Update `corsOptions` in `server.js` when changing client port or deploying.
 
 ### Password Security
-- Passwords hashed with bcryptjs (10 salt rounds)
-- Pre-save hook in User model: `this.password = await bcrypt.hash(this.password, 10)`
-- Comparison method: `userSchema.methods.matchPassword = await bcrypt.compare(password, this.password)`
-- Never return password field in responses (use `.select('-password')`)
+- Passwords hashed with bcryptjs (10 salt rounds) via pre-save hook
+- User model has `matchPassword()` instance method for comparison
+- Password field excluded by default (`select: false` in schema)
 
 ## Common Development Patterns
 
@@ -126,20 +131,17 @@ Server allows `http://localhost:3000` and `http://127.0.0.1:3000` origins with c
 3. Wrap with `<ProtectedRoute>` if authentication required
 4. Access auth state via `useAuth()` hook
 
-### MongoDB Model Pattern
-Models in `/server/models` use Mongoose schemas with:
-- Pre-save hooks for password hashing
-- Instance methods for custom logic (e.g., `matchPassword`)
-- Validation rules and required fields
-- Timestamps enabled by default
+### Role-Based Access Control
+- Users have `roles` array referencing Role documents
+- Role model defines `name` and `permissions` array
+- `AuthContext` provides `hasRole()` and `hasPermission()` helpers
+- `checkPermission.js` middleware available for route-level permission checks
 
-## Future Scaling Considerations
+## Demo/Learning Modules
 
-This codebase is designed for learning system design concepts. The `systemDesignTodo.txt` file outlines planned enhancements:
-- Load balancing with Nginx
-- Redis for caching and session management
-- Message queues for cross-server communication
-- Microservices architecture (auth/chat/user services)
-- Database replication and sharding
-
-When implementing these features, maintain backward compatibility with the current monolithic structure.
+The `/server/demo` directory contains isolated learning examples:
+- `aggregate/` - MongoDB aggregation pipeline patterns
+- `todoSearch/` - Search, filter, sort, pagination with/without aggregation
+- `worker_threads/` - CPU-intensive task offloading
+- `import_require_diff/` - ES modules vs CommonJS comparison
+- `optimize_performance_nodejs/` - Performance optimization patterns
