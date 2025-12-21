@@ -1,6 +1,6 @@
 # Node.js Interview Questions (Beginner to Advanced)
 
-Watch 
+Watch
 ==
 - https://www.youtube.com/watch?v=OHYjxMoG5XU
 
@@ -36,8 +36,27 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
 ---
 
 1. How can we optimise express js performance?
+   Answer:
+   - Use gzip compression (compression middleware, jo server response ko compress karke bhejta hai (100KB → 30KB), reducing bandwidth aur faster page load.)
+   - Enable caching (Redis, in-memory)
+   - Use PM2 cluster mode (multi-core)
+   - Optimize DB queries (indexes, lean())
+   - Use async/await properly, avoid blocking code
+   - Load balancing (Nginx)
 
 2. Implement pagination with mongo db in nodejs ( with or without aggregation )
+   Answer:
+   // Without aggregation:
+   const page = req.query.page || 1;
+   const limit = 10;
+   const skip = (page - 1) * limit;
+   const users = await User.find().skip(skip).limit(limit);
+
+   // With aggregation:
+   await User.aggregate([
+     { $skip: skip },
+     { $limit: limit }
+   ]);
 
 3. Difference between js and nodejs
    Key Differences:
@@ -51,29 +70,153 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
    | Example    | document.querySelector() | fs.readFile()       |
 
 4. Is nodejs single threaded?
+   Answer:
+   YES, but not really! Main thread (Event Loop) is single-threaded.
+   BUT: libuv provides thread pool (4 threads default) for heavy I/O operations.
+   So: JS code = single thread, I/O operations = multi-threaded behind scenes.
 
 5. What is module in nodejs?
+   Answer:
+   Module = Reusable block of code in separate file.
+   Types: Built-in (fs, http), Third-party (express), Custom (your files)
+   Export: module.exports = { func }  |  Import: const x = require('./file')
 
 6. How do you create a nodejs application?
+   Answer:
+   mkdir myapp && cd myapp
+   npm init -y                    // Creates package.json
+   npm install express            // Install dependencies
+   // Create index.js with app code
+   node index.js                  // Run app
 
 7. What is middleware in nodeJS?
-  - we can think it like a gateKeeper, which check as per the logic we mentioned in our middleware, just befofe the route handler and response
+   Answer:
+   - we can think it like a gateKeeper, which check as per the logic we mentioned in our middleware, just befofe the route handler and response
 
 8. How does nodeJs handle concurrency, even though it is single threaded?
+   Answer:
+   Event Loop + Non-blocking I/O + Callbacks/Promises
+   - Request aata hai → callback register → next request process
+   - I/O complete hone pe callback execute hota hai
+   - Libuv thread pool handles heavy operations in background
 
 9. What is control flow in nodeJS?
+   Answer:
+   Order in which code executes. In Node: async nature changes flow.
+   Tools: Callbacks → Promises → async/await
+   Libraries: async.js (series, parallel, waterfall)
 
 10. What is eventLoop in nodeJS?
+    Answer:
+    Event Loop = Watchman jo continuously check karta hai "kya kaam pending hai?"
+
+    CODE:
+    console.log('1');
+    setTimeout(() => console.log('2'), 0);
+    Promise.resolve().then(() => console.log('3'));
+    process.nextTick(() => console.log('4'));
+    console.log('5');
+
+    EXECUTION FLOW:
+    ─────────────────────────────────────────────────────────────
+    Step 1: console.log('1') → Call Stack → Run → "1" print
+    Step 2: setTimeout() → Callback Queue me daal diya
+    Step 3: Promise.then() → Microtask Queue me daal diya
+    Step 4: process.nextTick() → nextTick Queue me daal diya (HIGHEST priority!)
+    Step 5: console.log('5') → Call Stack → Run → "5" print
+
+    ★ Ab EVENT LOOP kaam shuru karta hai! ★
+
+    Step 6: EVENT LOOP check → "Call Stack empty?"
+            → YES → "nextTick Queue me kuch hai?" (Pehle check!)
+            → YES → nextTick callback run → "4" print
+
+    Step 7: EVENT LOOP check → "nextTick empty?"
+            → YES → "Microtask Queue (Promise) me kuch hai?"
+            → YES → Promise callback run → "3" print
+
+    Step 8: EVENT LOOP check → "Microtask empty?"
+            → YES → "Callback Queue (setTimeout) me kuch hai?"
+            → YES → setTimeout callback run → "2" print
+
+    OUTPUT: 1, 5, 4, 3, 2
+
+    PRIORITY ORDER:
+    ─────────────────────────────────────────────────────────────
+    1. Sync code (console.log)     → Sabse pehle
+    2. process.nextTick            → Microtask se bhi pehle!
+    3. Promise.then (Microtask)    → setTimeout se pehle
+    4. setTimeout/setImmediate     → Sabse baad
+
+    EVENT LOOP KA KAAM:
+    Loop {
+      1. Call Stack empty hai? Nahi → wait karo
+      2. Call Stack empty → Microtask Queue check → sab run karo
+      3. Microtask empty → Callback Queue se ek uthao → Call Stack me daalo
+      4. Repeat...
+    }
+
+    ═══════════════════════════════════════════════════════════
+    THREAD POOL (libuv) - Interview Answer
+    ═══════════════════════════════════════════════════════════
+    Q: Node single-threaded hai toh heavy kaam kaise hota hai?
+    A: Thread Pool! (Default 4 workers background me)
+
+    Kya jata hai Thread Pool me?
+    → fs.readFile, fs.writeFile (file operations)
+    → crypto.pbkdf2 (password hashing)
+    → zlib (compression)
+    → dns.lookup
+
+    Kya NAHI jata? (OS handles directly)
+    → http requests, TCP, network I/O
+
+    Example:
+    fs.readFile('a.txt')  → Thread 1
+    fs.readFile('b.txt')  → Thread 2
+    fs.readFile('c.txt')  → Thread 3
+    fs.readFile('d.txt')  → Thread 4
+    fs.readFile('e.txt')  → WAIT (queue me) jab tak koi free na ho
+
+    Change pool size: UV_THREADPOOL_SIZE=8 node app.js
+
+    Thread Pool vs Worker Threads (Q64):
+    ─────────────────────────────────────────────────────────
+    Thread Pool (libuv)     │  Worker Threads (worker_threads)
+    ─────────────────────────────────────────────────────────
+    Automatic               │  Manual create karna padta
+    fs, crypto ke liye      │  CPU-heavy JS code ke liye
+    Control nahi            │  Full control (tum banate ho)
+    Default 4               │  Jitne chaho utne (but limit rakho!)
+    ─────────────────────────────────────────────────────────
 
 11. What are the disadvantages of nodeJS?
+    Answer:
+    - Single thread = CPU-heavy tasks block everything
+    - Callback hell (solved with async/await)
+    - Unstable API (frequent changes)
+    - Not good for: Video processing, ML, heavy computation
 
 12. Can we use both SQL and nodeJs?
+    Answer:
+    YES! Use: mysql2, pg (PostgreSQL), sequelize (ORM), knex (query builder)
+    Example: const mysql = require('mysql2/promise');
 
 13. What is REPL environment in nodeJS?
+    Answer:
+    REPL = Read-Eval-Print-Loop (Interactive shell)
+    Terminal me `node` type karo → JS code directly run karo
+    Use: Quick testing, debugging, experimenting
 
 14. Give examples of inbuilt modules in nodeJS
+    Answer:
+    fs (file system), http, https, path, os, crypto, url, events, stream, buffer, util, child_process, cluster
 
 15. What is package.json in nodeJS?
+    Answer:
+    Project ka config file - metadata, dependencies, scripts sab yahaan
+    name, version, scripts, dependencies, devDependencies
+    npm init -y se create hota hai
 
 16. How to check if npm packages are safe?
     Answer:
@@ -94,10 +237,41 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     - Number of maintainers
 
 17. How to write helloWorld in server ( with / without express )?
+    Answer:
+    // WITHOUT Express (pure Node):
+    const http = require('http');
+    http.createServer((req, res) => {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end('Hello World');
+    }).listen(3000);
+
+    // WITH Express:
+    const express = require('express');
+    const app = express();
+    app.get('/', (req, res) => res.send('Hello World'));
+    app.listen(3000);
 
 18. Why we use ExpressJs?
+    Answer:
+    Express = Fast, minimal web framework for Node.js
+    - Easy routing (app.get, app.post)
+    - Middleware support
+    - Less boilerplate than pure http module
+    - Huge ecosystem (passport, cors, helmet)
+    Pure Node = 20 lines, Express = 5 lines for same work
 
 19. What are promises in nodeJs?
+    Answer:
+    Promise = "Ek kaam karunga, result baad me dunga"
+    3 States: Pending → Fulfilled (resolve) / Rejected (reject)
+
+    const promise = new Promise((resolve, reject) => {
+      if (success) resolve('Done!');
+      else reject('Failed!');
+    });
+    promise.then(result => console.log(result)).catch(err => console.log(err));
+
+    Why? Callback hell se bachne ke liye → Cleaner async code
 
 20. What is event-driven programming in NodeJS?
     Answer:
@@ -123,34 +297,158 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     the Event Loop, making Node highly efficient for I/O-heavy applications.
 
 21. What is buffer in nodeJS?
+    Answer:
+    Buffer = Raw binary data store karne ka tarika (temporary memory)
+    Use: File read/write, network streams, image processing
+
+    const buf = Buffer.from('Hello');  // String to buffer
+    console.log(buf);                   // <Buffer 48 65 6c 6c 6f>
+    console.log(buf.toString());        // 'Hello'
+
+    Why needed? JS strings UTF-16 hain, but files/network binary hain
 
 22. What is the difference between Access Token and Refresh Token?
     Answer:
     Access token is short-lived (15min-1hr) for API access. Refresh token is long-lived (7-30 days) to get new access token without re-login. This improves security - if access token is stolen, it expires quickly.
 
 23. What are streams in nodeJs?
+    Answer:
+    Stream = Data chunks me read/write karna (ek baar me nahi, thoda thoda)
+    Types: Readable, Writable, Duplex (both), Transform (modify while passing)
+
+    // 1GB file copy - Without stream (RAM full!):
+    const data = fs.readFileSync('big.mp4');  // Pura RAM me load
+    fs.writeFileSync('copy.mp4', data);
+
+    // With stream (RAM safe):
+    fs.createReadStream('big.mp4').pipe(fs.createWriteStream('copy.mp4'));
+
+    Use: Large files, video streaming, real-time data
 
 24. What is callback hell in nodejs / js?
+    Answer:
+    Callback Hell = Nested callbacks → Pyramid of doom → Unreadable code
+
+    getUser(id, (user) => {
+      getOrders(user, (orders) => {
+        getItems(orders, (items) => {
+          // Hell continues...
+        });
+      });
+    });
+
+    Solution: Promises → async/await
 
 25. What is timer module in nodeJS?
+    Answer:
+    setTimeout(fn, ms)      → Run once after delay
+    setInterval(fn, ms)     → Run repeatedly every ms
+    setImmediate(fn)        → Run after current event loop
+    process.nextTick(fn)    → Run before next event loop (highest priority)
+
+    Clear: clearTimeout(), clearInterval(), clearImmediate()
 
 26. What is bodyParser in Nodejs?
+    Answer:
+    Middleware jo request body parse karta hai (JSON, URL-encoded)
+    Express 4.16+ me built-in hai ab:
+
+    app.use(express.json());              // JSON body parse
+    app.use(express.urlencoded({ extended: true })); // Form data
+
+    Purana way: const bodyParser = require('body-parser');
 
 27. What is CORS in nodeJS?
+    Answer:
+    CORS = Cross-Origin Resource Sharing
+    Browser block karta hai requests to different domain (security)
+
+    npm install cors
+    const cors = require('cors');
+    app.use(cors());                      // Allow all origins
+    app.use(cors({ origin: 'https://mysite.com' })); // Specific origin
 
 28. What is authentication in Nodejs?
+    Answer:
+    Authentication = "Tu kaun hai?" (Identity verify)
+    Authorization = "Tujhe access hai?" (Permission check)
+
+    Methods: JWT (stateless), Session (stateful), OAuth (Google/FB login)
+    Packages: passport, jsonwebtoken, bcrypt
 
 29. What are the packages used for file upload in nodeJS?
+    Answer:
+    multer (most popular) - multipart/form-data handling
+    formidable - form parsing
+    busboy - streaming parser
+
+    const multer = require('multer');
+    const upload = multer({ dest: 'uploads/' });
+    app.post('/upload', upload.single('file'), (req, res) => {...});
 
 30. Which package is used for sending mail from nodeJs?
+    Answer:
+    nodemailer (most popular)
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: 'you@gmail.com', pass: 'app-password' }
+    });
+    transporter.sendMail({ from, to, subject, html });
+
+    Production: SendGrid, AWS SES, Mailgun (better deliverability)
 
 31. How are we connecting our nodejs to database?
+    Answer:
+    MongoDB: mongoose.connect('mongodb://localhost/mydb')
+    MySQL: mysql2.createConnection({ host, user, password, database })
+    PostgreSQL: pg.Pool({ connectionString })
+
+    Always use: Connection pooling, error handling, .env for credentials
 
 32. How to handle environment variables in nodeJs?
+    Answer:
+    npm install dotenv
+    require('dotenv').config();
+
+    // .env file:
+    DB_HOST=localhost
+    API_KEY=secret123
+
+    // Access:
+    process.env.DB_HOST
+    process.env.API_KEY
+
+    NEVER commit .env to git! Add to .gitignore
 
 33. Which package is used for password encryption (bcrypt)?
+    Answer:
+    bcrypt (or bcryptjs for pure JS)
+
+    // Hash password (signup):
+    const hash = await bcrypt.hash(password, 10);  // 10 = salt rounds
+
+    // Compare (login):
+    const match = await bcrypt.compare(inputPassword, storedHash);
+
+    Never store plain passwords! Always hash.
 
 34. What should be the folder structure of our nodeJS project?
+    Answer:
+    project/
+    ├── src/
+    │   ├── controllers/    # Route handlers (business logic)
+    │   ├── models/         # Database schemas
+    │   ├── routes/         # API routes
+    │   ├── middlewares/    # Auth, validation, etc.
+    │   ├── services/       # External APIs, complex logic
+    │   ├── utils/          # Helper functions
+    │   └── config/         # DB, env configs
+    ├── tests/
+    ├── .env
+    ├── .gitignore
+    ├── package.json
+    └── server.js           # Entry point
 
 35. What is EJS?
     Answer:
@@ -219,15 +517,62 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     Real-time chahiye = WebSocket use karo!
 
 39. How to manage session in nodeJS?
+    Answer:
+    npm install express-session
+
+    app.use(session({
+      secret: 'keyboard-cat',
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 24 * 60 * 60 * 1000 }  // 1 day
+    }));
+
+    // Set: req.session.user = { id: 1 };
+    // Get: req.session.user
+    // Destroy: req.session.destroy();
+
+    Production: connect-redis / connect-mongo (store sessions in DB)
 
 40. How to create database model?
+    Answer:
+    // Mongoose (MongoDB):
+    const userSchema = new mongoose.Schema({
+      name: { type: String, required: true },
+      email: { type: String, unique: true },
+      password: String,
+      createdAt: { type: Date, default: Date.now }
+    });
+    module.exports = mongoose.model('User', userSchema);
 
 41. Why we use mongoose, not mongoDb?
     Ans: Like Prisma is ORM (Object-Relational Mapper) for SQL, Mongoose is ODM (Object-Document Mapper) for MongoDB
 
 42. What is cluster in nodeJs?
+    Answer:
+    Cluster = Multiple Node processes on multiple CPU cores (parallel)
+    By default Node uses 1 core, cluster uses ALL cores
+
+    const cluster = require('cluster');
+    const numCPUs = require('os').cpus().length;
+
+    if (cluster.isMaster) {
+      for (let i = 0; i < numCPUs; i++) cluster.fork();
+    } else {
+      app.listen(3000);  // Each worker listens
+    }
+
+    Easy way: PM2 → pm2 start app.js -i max
 
 43. How to implement search functionality in NodeJS and mongoDB?
+    Answer:
+    // Simple text search:
+    await Product.find({ name: { $regex: searchTerm, $options: 'i' } });
+
+    // Full-text search (better):
+    // 1. Create index: db.products.createIndex({ name: 'text', description: 'text' })
+    // 2. Search: await Product.find({ $text: { $search: searchTerm } });
+
+    // Autocomplete: Use MongoDB Atlas Search or Elasticsearch
 
 44. Can middleware work on both request and response?
     Answer:
@@ -271,16 +616,91 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
 ===
 
 45. What is async/await? How is it different from Promises?
+    Answer:
+    async/await = Syntactic sugar over Promises (same thing, cleaner syntax)
+
+    // Promise way:
+    getUser().then(user => getOrders(user)).then(orders => console.log(orders));
+
+    // async/await way:
+    const user = await getUser();
+    const orders = await getOrders(user);
+    console.log(orders);
+
+    Difference: async/await looks synchronous, easier to read/debug
 
 46. How to handle errors in async/await? (try/catch pattern)
+    Answer:
+    try {
+      const user = await User.findById(id);
+      const orders = await Order.find({ userId: user._id });
+      res.json(orders);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Something went wrong' });
+    }
+
+    Global handler: app.use((err, req, res, next) => {...});
 
 47. Explain Promise.all(), Promise.race(), Promise.allSettled()
+    Answer:
+    Promise.all([p1, p2, p3])
+    → Sab complete hone ka wait, agar ek fail → sab fail
+
+    Promise.race([p1, p2, p3])
+    → Jo pehle complete ho (success ya fail), uska result
+
+    Promise.allSettled([p1, p2, p3])
+    → Sab ka wait, fail bhi track hota (koi reject nahi hota)
+    → Returns: [{ status: 'fulfilled', value }, { status: 'rejected', reason }]
+
+    Use: all = dependent tasks, race = timeout, allSettled = independent tasks
 
 48. What is input validation? How to use Joi or express-validator?
+    Answer:
+    Input validation = User input check karna before processing
+
+    // Joi:
+    const schema = Joi.object({
+      email: Joi.string().email().required(),
+      password: Joi.string().min(6).required()
+    });
+    const { error, value } = schema.validate(req.body);
+
+    // express-validator:
+    app.post('/user', [
+      body('email').isEmail(),
+      body('password').isLength({ min: 6 })
+    ], (req, res) => {
+      const errors = validationResult(req);
+    });
 
 49. What are MongoDB indexes? Why are they important for performance?
+    Answer:
+    Index = Data ka shortcut (like book index) → Fast search
+
+    Without index: Full collection scan (slow on 1M docs)
+    With index: Direct lookup (fast!)
+
+    db.users.createIndex({ email: 1 })      // Single field
+    db.users.createIndex({ name: 1, age: -1 })  // Compound
+    db.users.createIndex({ name: 'text' })   // Text search
+
+    Downside: Slow writes (index update hota), more storage
 
 50. Explain MongoDB aggregation pipeline with example
+    Answer:
+    Aggregation = Data transform/analyze karna (like SQL GROUP BY)
+
+    // Get total orders per user:
+    await Order.aggregate([
+      { $match: { status: 'completed' } },           // Filter
+      { $group: { _id: '$userId', total: { $sum: '$amount' } } },  // Group
+      { $sort: { total: -1 } },                      // Sort
+      { $limit: 10 }                                 // Top 10
+    ]);
+
+    Stages: $match, $group, $sort, $project, $lookup (join), $unwind
 
 51. What is rate limiting? How to implement it in Express?
     Answer:
@@ -321,6 +741,17 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     app.use(mongoSanitize());
 
 53. How to prevent SQL injection and XSS attacks in Node.js?
+    Answer:
+    SQL Injection Prevention:
+    - Use parameterized queries (NEVER string concatenation!)
+    - Bad:  `SELECT * FROM users WHERE id = ${id}`
+    - Good: `SELECT * FROM users WHERE id = ?`, [id]
+    - Use ORM (Sequelize, Prisma) - auto-escapes
+
+    XSS Prevention:
+    - Sanitize user input: xss-clean, DOMPurify
+    - Escape output: helmet middleware sets security headers
+    - Use: app.use(helmet()); app.use(xss());
 
 54. What is the difference between PM2 and nodemon?
     Answer:
@@ -342,6 +773,23 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     Production me dono use karo!
 
 56. What is Redis? How to use it for caching in Node.js?
+    Answer:
+    Redis = In-memory data store (super fast key-value DB)
+    Use: Caching, sessions, rate limiting, queues
+
+    npm install redis
+    const redis = require('redis');
+    const client = redis.createClient();
+
+    // Set cache (with expiry):
+    await client.setEx('user:123', 3600, JSON.stringify(userData));
+
+    // Get cache:
+    const cached = await client.get('user:123');
+    if (cached) return JSON.parse(cached);  // Cache hit!
+    // else fetch from DB and cache it
+
+    Pattern: Check cache → miss? → fetch DB → store in cache → return
 
 57. How to handle memory leaks in Node.js?
     Answer:
@@ -414,10 +862,55 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
     Supertest = API endpoints test karne ke liye
 
 61. What is the difference between unit testing and integration testing?
+    Answer:
+    Unit Test = Single function/component test (isolated, mocked dependencies)
+    Integration Test = Multiple components together (real DB, real API)
+
+    | Unit Test           | Integration Test        |
+    |---------------------|-------------------------|
+    | Fast                | Slow                    |
+    | Isolated            | Real dependencies       |
+    | Mock DB, APIs       | Actual DB, APIs         |
+    | Test: utils, helpers| Test: API endpoints     |
+
+    Example: Unit = test calculateTotal(), Integration = test POST /api/orders
 
 62. How to optimize MongoDB queries? (indexing, lean(), select())
+    Answer:
+    1. Indexing: db.users.createIndex({ email: 1 })
+       → Fast lookups on indexed fields
+
+    2. lean(): User.find().lean()
+       → Returns plain JS objects (not Mongoose docs) → 5x faster
+
+    3. select(): User.find().select('name email')
+       → Only fetch required fields → Less data transfer
+
+    4. limit(): User.find().limit(10)
+       → Don't fetch entire collection
+
+    5. Compound indexes for multi-field queries
+    6. Use explain() to analyze query: User.find().explain('executionStats')
 
 63. What is Docker? Basic concepts for Node.js deployment
+    Answer:
+    Docker = Container (app + dependencies packed together)
+    "Works on my machine" problem solved!
+
+    Dockerfile:
+    FROM node:18-alpine
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm install
+    COPY . .
+    EXPOSE 3000
+    CMD ["node", "server.js"]
+
+    Commands:
+    docker build -t myapp .
+    docker run -p 3000:3000 myapp
+
+    Docker Compose: Multiple containers (app + MongoDB + Redis)
 
 64. If 100 users simultaneously try to resize images, should we use worker threads?
     What is Worker Pool and why is it needed?
