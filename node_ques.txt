@@ -41,6 +41,9 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
    - Enable caching (Redis, in-memory)
    - Use PM2 cluster mode (multi-core)
    - Optimize DB queries (indexes, lean())
+     → lean() ONLY for READ, not for Edit/Delete/Create (returns plain JS object, no .save())
+     → indexes = Sorted pointer list (like book index), instead of scanning all docs,
+       directly jumps to data using algo called B-Tree (O(log n) vs O(n)) kind of binarySearch
    - Use async/await properly, avoid blocking code
    - Load balancing (Nginx)
 
@@ -882,6 +885,13 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
 
     2. lean(): User.find().lean()
        → Returns plain JS objects (not Mongoose docs) → 5x faster
+       → Use lean() ONLY for READ, not for Edit/Delete/Create
+
+       // ❌ Normal: Returns Mongoose Doc (heavy, with .save(), .populate())
+       const users = await User.find({});
+
+       // ✅ lean(): Returns Plain JS Object (light, no methods)
+       const users = await User.find({}).lean();
 
     3. select(): User.find().select('name email')
        → Only fetch required fields → Less data transfer
