@@ -45,6 +45,10 @@ BASIC (1-22)                    INTERMEDIATE (23-44)           ADVANCED (45-64)
      → indexes = Sorted pointer list (like book index), instead of scanning all docs,
        directly jumps to data using algo called B-Tree (O(log n) vs O(n)) kind of binarySearch
    - Use async/await properly, avoid blocking code
+     → Blocking (Avoid)              | Non-Blocking (Use)
+       fs.readFileSync()             | await fs.promises.readFile()
+       Heavy for loop (10L iter)     | Worker thread me daalo
+       JSON.parse(hugeData)          | Stream use karo
    - Load balancing (Nginx)
 
 2. Implement pagination with mongo db in nodejs ( with or without aggregation )
