@@ -1,0 +1,146 @@
+- json-formatter-extension
+    - work : done 
+    - publish : done 
+    
+- vault extension ( stashIt )
+    - work : done 
+    - publish : inReview
+
+- pageRuler extension ( Pixel Ruler )
+    - work : check the implementation
+    - publish : done 
+
+- whole page screenshot extension ( CaptureIt )
+    - work : done 
+    - publish : inReview
+
+===
+
+- job-digger 
+    - work :  done
+    - publish : done
+
+
+- jsontypicode clone ( onlyDevs )
+    - work : done 
+    - publish : done 
+
+- jQueryplugin (pluck)
+    - work : done
+    - publish : done 
+
+- cssFramework like bootStrap - @zenkit/css - zenkit-css
+    - work : done 
+    - publish : done
+
+- componentLibrary like antD -  @zenkit/ui. - zenkit-ui
+    - work :  done
+    - publish : done
+     
+- CodeLab liek codesanbox -  CodeLab
+    - work : done 
+    - publish : done
+     
+- jsCompiler - 
+    - work :  done 
+    - publish :done
+
+- like sharklaser
+
+
+===
+
+- check message scheduler ( work on it on ur own machine )
+
+- update resume 
+    - remove companies 
+    - show a game 
+    - add project section with catoegories
+
+
+
+- bhai me soch ra hu ek aise cli app like claude code , jo ywo way communication kr sake... like maine cli me run  kiya , ab
+  user bolega either hindi, english , hinglish, bhai brightness thoda kam kr de .. bha ek folder bana inside desktop or a
+  particular folder and visual code me open kr , bhai system lag ho ra hai , to wo reply dedega ruk me check krta hu , den
+  our app will send option kya krna hai, user ne reply kiya haan ye kr de etc and others  .. means user ko kuch b sysytem ka
+  karna ho , they dont need to do it manually... deep search and think regarding what other features we can add , and is der
+  ny cometitor .. ( means instead of laptop me search krna, is k through hi pura system se khel sakte)
+
+
+===
+
+//
+//
+ Comparison:
+  ┌──────────────────────────┬───────────────────────────────┐
+  │ Projects (10 categories) │   Projects2 (6 categories)    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ Web Tools                │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ React Components         │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ React Native Components  │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ Node.js Projects         │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ JavaScript Libraries     │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ CLI Tools                │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ Full Stack Projects      │ ✅ Full Stack Apps            │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ AI/ML Projects           │ ✅ AI Projects                │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ Mobile Apps              │ ❌ Missing                    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ Browser Extensions       │ ✅ Browser Extensions         │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ -                        │ ✅ VSCode Extensions (new)    │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ -                        │ ✅ Developer Tools (new)      │
+  ├──────────────────────────┼───────────────────────────────┤
+  │ -                        │ ✅ Libraries & Packages (new) │
+  └──────────────────────────┴───────────────────────────────┘
+
+
+   Web Tools
+
+  1. JSON to CSV Converter - Paste JSON, get CSV (or vice versa)
+  2. Base64 Encoder/Decoder - Encode/decode text & images
+  3. Regex Tester - Test regex patterns with live highlighting
+
+  ---
+  React Components
+
+  1. Toast/Notification System - Customizable toast notifications (npm publish)
+  2. Infinite Scroll Hook - useInfiniteScroll hook with demo
+  3. Multi-Select Dropdown - Searchable, taggable dropdown component
+
+  ---
+  React Native Components
+
+  1. Bottom Sheet - Draggable bottom sheet component
+  2. OTP Input - 4-6 digit OTP input with auto-focus
+  3. Swipeable Cards - Tinder-style swipe cards
+
+  ---
+  Node.js Projects
+
+  1. URL Shortener - Simple link shortener with analytics
+  2. Image Compressor API - Upload image, get compressed version
+  3. Webhook Tester - Receive & inspect webhooks (like webhook.site clone)
+
+  ---
+  JavaScript Libraries
+
+  1. LocalStorage Wrapper - Simple API with expiry support (npm publish)
+  2. Date Formatter - Lightweight date formatting library
+  3. Event Emitter - Pub/sub pattern implementation
+
+  ---
+  CLI Tools
+
+  1. Project Scaffolder - npx create-my-app type tool for your boilerplates
+  2. Git Stats - Show commit stats, lines changed, streak
+  3. Port Killer - Find & kill process on a specific port
+
