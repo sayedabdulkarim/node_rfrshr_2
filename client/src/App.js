@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import ProfileStream from './pages/ProfileStream';
 import ProfileWorker from './pages/ProfileWorker';
 import TaskList from './pages/TaskList';
+import SessionDemo from './pages/SessionDemo';
 import './App.css';
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
                 }
               />
               <Route path="/tasks" element={<TaskList />} />
+              <Route path="/session-demo" element={<SessionDemo />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
